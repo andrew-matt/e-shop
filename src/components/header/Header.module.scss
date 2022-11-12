@@ -6,4 +6,14 @@
   justify-content: flex-end;
   align-items: center;
   padding: 0 20px;
+
+  .wrapper {
+    display: flex;
+    align-items: flex-end;
+
+    .totalCost {
+      margin-right: 20px;
+      font-size: 18px;
+    }
+  }
 }

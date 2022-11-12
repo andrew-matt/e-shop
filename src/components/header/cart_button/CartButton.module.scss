@@ -5,12 +5,33 @@
   align-items: center;
   cursor: pointer;
   transition: .4s;
+
+  .iconWrapper {
+    position: relative;
+
+    .notification {
+      font-size: 10px;
+      line-height: 13px;
+      text-transform: uppercase;
+      color: #fff;
+      text-align: center;
+      display: inline-block;
+      min-width: 16px;
+      height: 16px;
+      position: absolute;
+      top: -6px;
+      right: -8px;
+      background: #f55123;
+      padding: 2px 3px 1px;
+      border-radius: 16px;
+    }
+  }
+
+  .text {
+    font-size: 14px;
+  }
 }
 
 .button:hover {
   color: #1976d2;
-}
-
-.text {
-  font-size: 14px;
 }
