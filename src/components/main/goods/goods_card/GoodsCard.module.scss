@@ -1,0 +1,113 @@
+.goodsCard {
+  cursor: pointer;
+  width: calc(100%/12*6 - 8px);
+  margin: 0 4px 24px;
+
+  @media (min-width: 768px) {
+    width: calc(100%/12*3 - 8px);
+  }
+
+  @media (min-width: 954px) {
+    width: calc(100%/12*2.4 - 8px);
+  }
+
+  @media (min-width: 1140px) {
+    width: calc(100%/12*2 - 32px);
+    margin: 0 16px 32px;
+  }
+
+  @media (min-width: 1326px) {
+    width: calc(100%/12*1.714 - 32px);
+  }
+
+  .imageWrapper {
+    padding-top: calc(100% * (240/180));
+    height: 0;
+    position: relative;
+    margin: 0 0 4px;
+    background: #f6f6f6;
+    overflow: hidden;
+    border-radius: 8px;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(41,43,83,.03);
+      display: block;
+      z-index: 2;
+    }
+
+    .image {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      position: absolute;
+      z-index: 1;
+      left: 0;
+      top: 50%;
+      transform: translate(0,-50%);
+    }
+  }
+
+  .goodsCardPrice {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+
+    .priceNow {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 700;
+      color: #242424;
+      text-decoration: none;
+      max-width: 100%;
+      margin-right: 4px;
+
+      @media (min-width: 1024px) {
+        font-size: 18px;
+        line-height: 24px;
+        margin-right: 10px;
+      }
+    }
+
+    .priceLast {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      font-size: 12px;
+      line-height: 16px;
+      color: #999;
+      text-decoration: line-through;
+      max-width: 100%;
+
+      @media (min-width: 1024px) {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+
+  .goodsCardDescription {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 14px;
+    line-height: 20px;
+    color: #999;
+    position: relative;
+
+    .goodsCardBrand {
+
+      &:after {
+        content: ' / ';
+      }
+    }
+  }
+}

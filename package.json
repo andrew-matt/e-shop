@@ -94,6 +94,7 @@
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
     "react-test-renderer": "^18.2.0",
+    "sass": "^1.56.1",
     "storybook": "7.0.0-alpha.48",
     "webpack": "^5.75.0"
   }
