@@ -72,7 +72,8 @@
             {
                 "devDependencies": [
                     "**/*.stories.*",
-                    "**/.storybook/**/*.*"
+                    "**/.storybook/**/*.*",
+                    "**/integration_tests/**/*.*"
                 ],
                 "peerDependencies": true
             }
