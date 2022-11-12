@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { Button } from 'common/components/button/Button';
 import style from 'components/main/goods/goods_card/GoodsCard.module.scss';
 
 type GoodsCardPropsType = {
@@ -23,6 +24,7 @@ export const GoodsCard: FC<GoodsCardPropsType> = ({
     <div className={style.goodsCard}>
       <div className={style.imageWrapper}>
         <img src={image} alt={altText} className={style.image} />
+        <Button className={style.addToCartButton} title="Добавить в корзину" />
       </div>
       <p className={style.goodsCardPrice}>
         <ins className={style.priceNow}>{priceNow}</ins>
