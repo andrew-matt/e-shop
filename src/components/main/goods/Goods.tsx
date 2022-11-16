@@ -11,17 +11,7 @@ export const Goods: FC = () => {
       <h2 className={style.goodsHeader}>Хиты продаж</h2>
       <div className={style.goodsWrapper}>
         {goodsData.map(goodsItem => {
-          return (
-            <GoodsCard
-              key={goodsItem.id}
-              image={goodsItem.image}
-              altText={goodsItem.description}
-              priceNow={goodsItem.priceNow}
-              priceLast={goodsItem.priceLast}
-              brand={goodsItem.brand}
-              description={goodsItem.description}
-            />
-          );
+          return <GoodsCard key={goodsItem.id} goodsItem={goodsItem} />;
         })}
       </div>
     </>

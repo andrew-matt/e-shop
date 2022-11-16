@@ -3,45 +3,48 @@ import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from 'common/components/button/Button';
-import { fractionDigits, priceFormatter } from 'common/utils/utils';
-import { selectGoodsTotalCost } from 'components/header/header-selectors';
+import { GoodsItemType } from 'common/data/data';
+import { priceCountHandler, priceFormatter } from 'common/utils/utils';
+import { addGoodsItem } from 'components/cart/cart-reducer';
 import {
   setGoodsTotalCost,
+  setGoodsTotalCostWithoutDiscount,
   setGoodsTotalCount,
 } from 'components/main/goods/goods-reducer';
-import { selectGoodsTotalCount } from 'components/main/goods/goods_card/goods-card-selectors';
+import {
+  selectGoodsTotalCost,
+  selectGoodsTotalCostWithoutDiscount,
+  selectGoodsTotalCount,
+} from 'components/main/goods/goods_card/goods-card-selectors';
 import style from 'components/main/goods/goods_card/GoodsCard.module.scss';
 
 type GoodsCardPropsType = {
-  image: string;
-  altText: string;
-  priceNow: number;
-  priceLast: number;
-  brand: string;
-  description: string;
+  goodsItem: GoodsItemType;
 };
 
-export const GoodsCard: FC<GoodsCardPropsType> = ({
-  image,
-  altText,
-  priceNow,
-  priceLast,
-  brand,
-  description,
-}) => {
+export const GoodsCard: FC<GoodsCardPropsType> = ({ goodsItem }) => {
   const dispatch = useDispatch();
   const goodsTotalCount = useSelector(selectGoodsTotalCount);
   const goodsTotalCost = useSelector(selectGoodsTotalCost);
+  const goodsTotalCostWithoutDiscount = useSelector(selectGoodsTotalCostWithoutDiscount);
+
+  const { image, priceNow, priceLast, brand, description } = goodsItem;
 
   const onAddToCartButtonClickHandler = (): void => {
+    dispatch(addGoodsItem(goodsItem));
     dispatch(setGoodsTotalCount(goodsTotalCount + 1));
-    dispatch(setGoodsTotalCost(+(goodsTotalCost + priceNow).toFixed(fractionDigits)));
+    dispatch(setGoodsTotalCost(priceCountHandler(goodsTotalCost + priceNow)));
+    dispatch(
+      setGoodsTotalCostWithoutDiscount(
+        priceCountHandler(goodsTotalCostWithoutDiscount + priceLast),
+      ),
+    );
   };
 
   return (
     <div className={style.goodsCard}>
       <div className={style.imageWrapper}>
-        <img src={image} alt={altText} className={style.image} />
+        <img src={image} alt={description} className={style.image} />
         <Button
           className={style.addToCartButton}
           title="Добавить в корзину"

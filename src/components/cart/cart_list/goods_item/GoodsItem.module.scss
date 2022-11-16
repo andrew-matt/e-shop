@@ -1,0 +1,128 @@
+@import 'src/common/styles/sass/mixins';
+
+.cartListItemWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 24px;
+
+  .goodsItemWrapper {
+    display: flex;
+    width: calc(100% - 180px - 195px - 3*16px);
+
+    .goodsItemImageWrapper {
+      width: 80px;
+      height: 100px;
+      margin-right: 16px;
+      position: relative;
+      font-size: 0;
+      line-height: 1;
+      text-align: center;
+      white-space: nowrap;
+      border-radius: 8px;
+      overflow: hidden;
+
+      &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(41, 43, 83, .03);
+        z-index: 2;
+      }
+
+      .goodsItemImage {
+        display: inline-block;
+        vertical-align: middle;
+        max-height: 100%;
+      }
+    }
+  }
+
+  .goodsItemInfo {
+    width: calc(100% - 80px - 16px);
+
+    .goodsItemName, .goodsItemBrand {
+      color: #242424;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  }
+
+  .goodsItemCountWrapper {
+
+    display: flex;
+    width: 180px;
+
+    .goodsItemCountButtonMinus {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #d5d5d5;
+      border-radius: 100%;
+      font-size: 18px;
+      line-height: 24px;
+      background: 0 0;
+      padding: 0;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+
+      &:after {
+        @include minusButtonHorizontalLine;
+      }
+    }
+
+    .goodsItemCountButtonPlus {
+      @extend .goodsItemCountButtonMinus;
+
+      &:before {
+        @include minusButtonHorizontalLine;
+        transform: rotate(-90deg);
+      }
+    }
+
+    .goodsItemCount {
+      width: 24px;
+      outline: none;
+      border: none;
+      font-size: 18px;
+      line-height: 24px;
+      text-align: center;
+
+      @media (min-width: 1024px) {
+        width: 42px;
+      }
+    }
+  }
+
+  .goodsItemPrice {
+    text-align: right;
+    width: 195px;
+    margin: 0 8px;
+
+    .goodsItemPriceNew {
+      font-size: 24px;
+      line-height: 32px;
+      font-weight: 700;
+    }
+
+    .goodsItemPriceOld {
+      text-decoration: line-through;
+      border-bottom: 1px dashed;
+      font-size: 16px;
+      line-height: 22px;
+      background-color: transparent;
+      color: #8b8b8b;
+      border-color: #8b8b8b;
+      font-weight: 700;
+      display: inline-block;
+      margin-top: 4px;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@import 'src/common/styles/sass/variables';
+@import 'src/common/styles/sass/mixins';
+
+.container {
+  @include mainPageContainer;
+
+  .cart {
+    display: flex;
+    margin-top: 24px;
+    width: 100%;
+  }
+
+  .image {
+    width: 360px;
+    height: 320px;
+  }
+
+  .text {
+    font-size: 36px;
+    line-height: 1.112;
+    font-weight: 700;
+  }
+}

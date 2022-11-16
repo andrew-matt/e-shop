@@ -1,0 +1,55 @@
+.cartListContent {
+
+  @media (min-width: 1167px) {
+    width: calc(100% - 340px - 20px);
+    margin-right: 20px;
+  }
+
+  @media (min-width: 1200px) {
+    width: calc(100% - 340px - 40px);
+    margin-right: 40px;
+  }
+
+  @media (min-width: 1450px) {
+    width: calc(100% / 12 * 9 - 40px);
+  }
+
+  .cartList {
+    padding: 0;
+    box-shadow: none;
+    border-radius: 0;
+    border: 1px solid transparent;
+
+    @media (min-width: 1024px) {
+      width: 100%;
+      padding: 24px;
+      box-shadow: 0 0 20px rgb(0 0 0 / 10%);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cartListHeaderWrapper {
+      display: flex;
+      border-bottom: 1px solid #e8e8e8;
+
+      .cartListHeader {
+        position: relative;
+        margin-bottom: 16px;
+        font-size: 24px;
+        line-height: 32px;
+
+        &:before {
+          font-size: 14px;
+          line-height: 20px;
+          content: attr(data-count);
+          display: block;
+          font-weight: 700;
+          position: absolute;
+          left: calc(100% + 4px);
+          top: 0;
+        }
+      }
+    }
+  }
+}

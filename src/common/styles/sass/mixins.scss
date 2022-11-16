@@ -1,0 +1,23 @@
+@import 'src/common/styles/sass/variables';
+
+@mixin mainPageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: calc(100vh - $headerHeight);
+  max-width: 1504px;
+  padding: 0 32px;
+  margin: 0 auto;
+}
+
+@mixin minusButtonHorizontalLine {
+  content: '';
+  width: 12px;
+  height: 1px;
+  background: #242424;
+  display: block;
+  left: calc(50% - 6px);
+  position: absolute;
+  top: 50%;
+}
