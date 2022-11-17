@@ -1,13 +1,10 @@
-import { ChangeEvent, FC, useState } from 'react';
-
-import { useDispatch } from 'react-redux';
+import { FC } from 'react';
 
 import style from './GoodsItem.module.scss';
 
-import { Button } from 'common/components/button/Button';
 import { GoodsItemType } from 'common/data/data';
 import { priceFormatter } from 'common/utils/utils';
-import { changeGoodsItemAmount, removeGoodsItem } from 'components/cart/cart-reducer';
+import { GoodsCountControl } from 'components/cart/cart_list/goods_item/goods_count_control/GoodsCountControl';
 
 type GoodsItemPropsType = {
   goodsItem: GoodsItemType;
@@ -15,55 +12,6 @@ type GoodsItemPropsType = {
 
 export const GoodsItem: FC<GoodsItemPropsType> = ({ goodsItem }) => {
   const { id, image, priceNow, priceLast, brand, description, amount } = goodsItem;
-
-  const dispatch = useDispatch();
-
-  const [goodsItemAmount, setGoodsItemAmount] = useState<number | string>(amount);
-
-  const onGoodsItemCountChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = event.currentTarget;
-
-    if (Number.isInteger(+value) || value === '') {
-      setGoodsItemAmount(event.currentTarget.value);
-    }
-  };
-
-  const onGoodsItemCountBlurHandler = (changedValue?: number): void => {
-    const minValue = 1;
-    const maxValue = 99;
-    let value = goodsItemAmount;
-
-    if (changedValue) {
-      value = changedValue;
-    }
-
-    if (value <= minValue || value === '') {
-      value = minValue;
-      setGoodsItemAmount(value);
-    } else if (value >= maxValue) {
-      value = maxValue;
-      setGoodsItemAmount(value);
-    }
-
-    dispatch(changeGoodsItemAmount(id, value as number));
-  };
-
-  const goodsItemCountButtonMinusClickHandler = (): void => {
-    const valueAfterChange = +goodsItemAmount - 1;
-
-    if (valueAfterChange < 1) {
-      dispatch(removeGoodsItem(id));
-    }
-    setGoodsItemAmount(valueAfterChange);
-    dispatch(changeGoodsItemAmount(id, valueAfterChange));
-  };
-
-  const goodsItemCountButtonPlusClickHandler = (): void => {
-    const valueAfterChange = +goodsItemAmount + 1;
-
-    setGoodsItemAmount(valueAfterChange);
-    dispatch(changeGoodsItemAmount(id, valueAfterChange));
-  };
 
   return (
     <div className={style.cartListItemWrapper}>
@@ -76,26 +24,7 @@ export const GoodsItem: FC<GoodsItemPropsType> = ({ goodsItem }) => {
           <span className={style.goodsItemBrand}>, {brand}</span>
         </div>
       </div>
-      <div className={style.goodsItemCountWrapper}>
-        <Button
-          className={style.goodsItemCountButtonMinus}
-          title=""
-          onClick={goodsItemCountButtonMinusClickHandler}
-        />
-        <input
-          type="text"
-          maxLength={3}
-          value={goodsItemAmount}
-          className={style.goodsItemCount}
-          onChange={onGoodsItemCountChangeHandler}
-          onBlur={() => onGoodsItemCountBlurHandler()}
-        />
-        <Button
-          className={style.goodsItemCountButtonPlus}
-          title=""
-          onClick={goodsItemCountButtonPlusClickHandler}
-        />
-      </div>
+      <GoodsCountControl goodsItemId={id} amount={amount} />
       <div className={style.goodsItemPrice}>
         <div className={style.goodsItemPriceNew}>
           {priceFormatter(priceNow * amount)} р.

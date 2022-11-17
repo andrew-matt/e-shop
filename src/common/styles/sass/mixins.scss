@@ -11,6 +11,28 @@
   margin: 0 auto;
 }
 
+@mixin CommonButtonStyle {
+  min-width: fit-content;
+  padding: 13px 20px;
+  background-color: #1976d2;
+  border: 2px solid #1976d2;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+  transition: .4s;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0;
+  font-family: BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  &:hover {
+    background-color: #1163b4;
+    border: 2px solid #1163b4;
+  }
+}
+
 @mixin minusButtonHorizontalLine {
   content: '';
   width: 12px;
