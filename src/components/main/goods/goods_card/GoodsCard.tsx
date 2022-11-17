@@ -19,7 +19,7 @@ export const GoodsCard: FC<GoodsCardPropsType> = ({ goodsItem }) => {
   const dispatch = useDispatch();
 
   const onAddToCartButtonClickHandler = (): void => {
-    dispatch(addGoodsItem(goodsItem));
+    dispatch(addGoodsItem({ goodsItem }));
     dispatch(updateCart());
   };
 

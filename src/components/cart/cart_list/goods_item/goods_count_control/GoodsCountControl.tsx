@@ -50,28 +50,28 @@ export const GoodsCountControl: FC<GoodsCountControlPropsType> = ({
       setGoodsItemAmount(value);
     }
 
-    dispatch(changeGoodsItemAmount(goodsItemId, value as number));
+    dispatch(changeGoodsItemAmount({ goodsItemId, amount: value as number }));
   };
 
   const onGoodsItemCountButtonMinusClickHandler = (): void => {
     const valueAfterChange = +goodsItemAmount - 1;
 
     if (valueAfterChange < 1) {
-      dispatch(removeGoodsItem(goodsItemId));
+      dispatch(removeGoodsItem({ goodsItemId }));
     }
     setGoodsItemAmount(valueAfterChange);
-    dispatch(changeGoodsItemAmount(goodsItemId, valueAfterChange));
+    dispatch(changeGoodsItemAmount({ goodsItemId, amount: valueAfterChange }));
   };
 
   const onGoodsItemCountButtonPlusClickHandler = (): void => {
     const valueAfterChange = +goodsItemAmount + 1;
 
     setGoodsItemAmount(valueAfterChange);
-    dispatch(changeGoodsItemAmount(goodsItemId, valueAfterChange));
+    dispatch(changeGoodsItemAmount({ goodsItemId, amount: valueAfterChange }));
   };
 
   const onGoodsItemRemoveButtonClickHandler = (): void => {
-    dispatch(removeGoodsItem(goodsItemId));
+    dispatch(removeGoodsItem({ goodsItemId }));
   };
 
   return (
