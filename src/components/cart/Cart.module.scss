@@ -10,14 +10,23 @@
     width: 100%;
   }
 
-  .image {
-    width: 360px;
-    height: 320px;
-  }
+  .imageContainer {
+    width: 100%;
+    height: calc(100vh - $headerHeight);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-  .text {
-    font-size: 36px;
-    line-height: 1.112;
-    font-weight: 700;
+    .image {
+      width: 360px;
+      height: 320px;
+    }
+
+    .text {
+      font-size: 36px;
+      line-height: 1.112;
+      font-weight: 700;
+    }
   }
 }

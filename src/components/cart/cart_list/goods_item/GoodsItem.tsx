@@ -7,7 +7,7 @@ import style from './GoodsItem.module.scss';
 import { Button } from 'common/components/button/Button';
 import { GoodsItemType } from 'common/data/data';
 import { priceFormatter } from 'common/utils/utils';
-import { changeGoodsItemAmount } from 'components/cart/cart-reducer';
+import { changeGoodsItemAmount, removeGoodsItem } from 'components/cart/cart-reducer';
 
 type GoodsItemPropsType = {
   goodsItem: GoodsItemType;
@@ -17,6 +17,7 @@ export const GoodsItem: FC<GoodsItemPropsType> = ({ goodsItem }) => {
   const { id, image, priceNow, priceLast, brand, description, amount } = goodsItem;
 
   const dispatch = useDispatch();
+
   const [goodsItemAmount, setGoodsItemAmount] = useState<number | string>(amount);
 
   const onGoodsItemCountChangeHandler = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -27,10 +28,14 @@ export const GoodsItem: FC<GoodsItemPropsType> = ({ goodsItem }) => {
     }
   };
 
-  const onGoodsItemCountBlurHandler = (): void => {
+  const onGoodsItemCountBlurHandler = (changedValue?: number): void => {
     const minValue = 1;
     const maxValue = 99;
     let value = goodsItemAmount;
+
+    if (changedValue) {
+      value = changedValue;
+    }
 
     if (value <= minValue || value === '') {
       value = minValue;
@@ -41,6 +46,23 @@ export const GoodsItem: FC<GoodsItemPropsType> = ({ goodsItem }) => {
     }
 
     dispatch(changeGoodsItemAmount(id, value as number));
+  };
+
+  const goodsItemCountButtonMinusClickHandler = (): void => {
+    const valueAfterChange = +goodsItemAmount - 1;
+
+    if (valueAfterChange < 1) {
+      dispatch(removeGoodsItem(id));
+    }
+    setGoodsItemAmount(valueAfterChange);
+    dispatch(changeGoodsItemAmount(id, valueAfterChange));
+  };
+
+  const goodsItemCountButtonPlusClickHandler = (): void => {
+    const valueAfterChange = +goodsItemAmount + 1;
+
+    setGoodsItemAmount(valueAfterChange);
+    dispatch(changeGoodsItemAmount(id, valueAfterChange));
   };
 
   return (
@@ -55,16 +77,24 @@ export const GoodsItem: FC<GoodsItemPropsType> = ({ goodsItem }) => {
         </div>
       </div>
       <div className={style.goodsItemCountWrapper}>
-        <Button className={style.goodsItemCountButtonMinus} title="" onClick={() => {}} />
+        <Button
+          className={style.goodsItemCountButtonMinus}
+          title=""
+          onClick={goodsItemCountButtonMinusClickHandler}
+        />
         <input
           type="text"
           maxLength={3}
           value={goodsItemAmount}
           className={style.goodsItemCount}
           onChange={onGoodsItemCountChangeHandler}
-          onBlur={onGoodsItemCountBlurHandler}
+          onBlur={() => onGoodsItemCountBlurHandler()}
         />
-        <Button className={style.goodsItemCountButtonPlus} title="" onClick={() => {}} />
+        <Button
+          className={style.goodsItemCountButtonPlus}
+          title=""
+          onClick={goodsItemCountButtonPlusClickHandler}
+        />
       </div>
       <div className={style.goodsItemPrice}>
         <div className={style.goodsItemPriceNew}>

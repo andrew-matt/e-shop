@@ -129,7 +129,7 @@ export const goodsData: GoodsItemType[] = [
     priceNow: 12.28,
     priceLast: 20.47,
     brand: 'Nivea',
-    description: 'Твердое средство для умывания WonderBAR Sensitive базовое еж…',
+    description: 'Твердое средство для умывания WonderBAR Sensitive базовое',
     amount: 1,
   },
   {
@@ -147,7 +147,7 @@ export const goodsData: GoodsItemType[] = [
     priceNow: 39.49,
     priceLast: 119.69,
     brand: 'Снолики',
-    description: 'Зоопарк Комбинезон для новорождённых комбинезон детский комп…',
+    description: 'Зоопарк Комбинезон для новорождённых комбинезон детский',
     amount: 1,
   },
 ];

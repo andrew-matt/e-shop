@@ -11,7 +11,7 @@ import {
 import { GoodsItem } from 'components/cart/cart_list/goods_item/GoodsItem';
 
 export const CartList: FC = () => {
-  const goodsFromCart = useSelector(selectGoodsFromCart);
+  const goodsInCart = useSelector(selectGoodsFromCart);
   const goodsTotalCount = useSelector(selectGoodsTotalCount);
 
   return (
@@ -22,7 +22,7 @@ export const CartList: FC = () => {
             Корзина
           </h1>
         </div>
-        {goodsFromCart.map(goodsItem => {
+        {goodsInCart.map(goodsItem => {
           return <GoodsItem key={goodsItem.id} goodsItem={goodsItem} />;
         })}
       </div>

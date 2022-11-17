@@ -1,44 +1,26 @@
 import { FC } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+import style from './GoodsCard.module.scss';
 
 import { Button } from 'common/components/button/Button';
 import { GoodsItemType } from 'common/data/data';
-import { priceCountHandler, priceFormatter } from 'common/utils/utils';
-import { addGoodsItem } from 'components/cart/cart-reducer';
-import {
-  setGoodsTotalCost,
-  setGoodsTotalCostWithoutDiscount,
-  setGoodsTotalCount,
-} from 'components/main/goods/goods-reducer';
-import {
-  selectGoodsTotalCost,
-  selectGoodsTotalCostWithoutDiscount,
-  selectGoodsTotalCount,
-} from 'components/main/goods/goods_card/goods-card-selectors';
-import style from 'components/main/goods/goods_card/GoodsCard.module.scss';
+import { priceFormatter } from 'common/utils/utils';
+import { addGoodsItem, updateCart } from 'components/cart/cart-reducer';
 
 type GoodsCardPropsType = {
   goodsItem: GoodsItemType;
 };
 
 export const GoodsCard: FC<GoodsCardPropsType> = ({ goodsItem }) => {
-  const dispatch = useDispatch();
-  const goodsTotalCount = useSelector(selectGoodsTotalCount);
-  const goodsTotalCost = useSelector(selectGoodsTotalCost);
-  const goodsTotalCostWithoutDiscount = useSelector(selectGoodsTotalCostWithoutDiscount);
-
   const { image, priceNow, priceLast, brand, description } = goodsItem;
+
+  const dispatch = useDispatch();
 
   const onAddToCartButtonClickHandler = (): void => {
     dispatch(addGoodsItem(goodsItem));
-    dispatch(setGoodsTotalCount(goodsTotalCount + 1));
-    dispatch(setGoodsTotalCost(priceCountHandler(goodsTotalCost + priceNow)));
-    dispatch(
-      setGoodsTotalCostWithoutDiscount(
-        priceCountHandler(goodsTotalCostWithoutDiscount + priceLast),
-      ),
-    );
+    dispatch(updateCart());
   };
 
   return (

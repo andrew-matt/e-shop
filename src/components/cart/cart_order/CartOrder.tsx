@@ -5,8 +5,9 @@ import { useSelector } from 'react-redux';
 import style from './CartOrder.module.scss';
 
 import { Button } from 'common/components/button/Button';
-import { priceCountHandler, priceFormatter } from 'common/utils/utils';
+import { priceFormatter } from 'common/utils/utils';
 import {
+  selectDiscount,
   selectGoodsTotalCost,
   selectGoodsTotalCostWithoutDiscount,
   selectGoodsTotalCount,
@@ -16,10 +17,7 @@ export const CartOrder: FC = () => {
   const goodsTotalCost = useSelector(selectGoodsTotalCost);
   const goodsTotalCount = useSelector(selectGoodsTotalCount);
   const goodsTotalCostWithoutDiscount = useSelector(selectGoodsTotalCostWithoutDiscount);
-
-  const discount = priceFormatter(
-    priceCountHandler(goodsTotalCostWithoutDiscount - goodsTotalCost),
-  );
+  const discount = useSelector(selectDiscount);
 
   return (
     <div className={style.cartFormSidebar}>
@@ -36,7 +34,7 @@ export const CartOrder: FC = () => {
             </div>
             <div className={style.discountLine}>
               <span>Скидка</span>
-              <span>&ndash; {discount} р.</span>
+              <span>&ndash; {priceFormatter(discount)} р.</span>
             </div>
           </div>
           <Button className={style.cartOrderButton} title="Заказать" onClick={() => {}} />
