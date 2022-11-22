@@ -25,6 +25,7 @@
     "typescript": "*",
     "web-vitals": "^2.1.0"
   },
+  "homepage": "https://andrew-matt.github.io/e-shop",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -33,7 +34,9 @@
     "prepare": "husky install",
     "lint-fix": "eslint --fix",
     "storybook": "storybook dev -p 6006 -s public",
-    "build-storybook": "storybook build -s public"
+    "build-storybook": "storybook build -s public",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "lint-staged": {
     "**/*.{js,ts,jsx,tsx}": [
@@ -93,6 +96,7 @@
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-storybook": "^0.6.7",
+    "gh-pages": "^4.0.0",
     "husky": "^8.0.0",
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
