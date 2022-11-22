@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { GoodsItemType } from 'common/data/data';
 import { priceCountHandler } from 'common/utils/utils';
+import { GoodsItemType } from 'components/main/goods/goods-reducer';
 
 export const slice = createSlice({
   name: 'cart',

@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux';
 import style from './GoodsCard.module.scss';
 
 import { Button } from 'common/components/button/Button';
-import { GoodsItemType } from 'common/data/data';
 import { priceFormatter } from 'common/utils/utils';
 import { addGoodsItem, updateCart } from 'components/cart/cart-reducer';
+import { GoodsItemType } from 'components/main/goods/goods-reducer';
 
 type GoodsCardPropsType = {
   goodsItem: GoodsItemType;

@@ -2,9 +2,9 @@ import { FC } from 'react';
 
 import style from './GoodsItem.module.scss';
 
-import { GoodsItemType } from 'common/data/data';
 import { priceFormatter } from 'common/utils/utils';
 import { GoodsCountControl } from 'components/cart/cart_list/goods_item/goods_count_control/GoodsCountControl';
+import { GoodsItemType } from 'components/main/goods/goods-reducer';
 
 type GoodsItemPropsType = {
   goodsItem: GoodsItemType;
