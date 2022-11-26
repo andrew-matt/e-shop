@@ -4,27 +4,38 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import style from './Goods.module.scss';
 
+import { Preloader } from 'common/components/preloader/Preloader';
 import { fetchGoods } from 'components/main/goods/goods-sagas';
-import { selectGoodsFromStore } from 'components/main/goods/goods-selectors';
+import {
+  selectGoodsFromStore,
+  selectIsLoading,
+} from 'components/main/goods/goods-selectors';
 import { GoodsCard } from 'components/main/goods/goods_card/GoodsCard';
 
 export const Goods: FC = () => {
   const dispatch = useDispatch();
   const goodsInStore = useSelector(selectGoodsFromStore);
+  const isLoading = useSelector(selectIsLoading);
 
   useEffect(() => {
     dispatch(fetchGoods());
   }, [dispatch]);
 
   return (
-    <>
-      <h2 className={style.goodsHeader}>Хиты продаж</h2>
-      <div className={style.goodsWrapper}>
-        {goodsInStore.length !== 0 &&
-          goodsInStore.map((goodsItem: any) => {
-            return <GoodsCard key={goodsItem.id} goodsItem={goodsItem} />;
-          })}
-      </div>
-    </>
+    <div>
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <>
+          <h2 className={style.goodsHeader}>Хиты продаж</h2>
+          <div className={style.goodsWrapper}>
+            {goodsInStore.length !== 0 &&
+              goodsInStore.map((goodsItem: any) => {
+                return <GoodsCard key={goodsItem.id} goodsItem={goodsItem} />;
+              })}
+          </div>
+        </>
+      )}
+    </div>
   );
 };

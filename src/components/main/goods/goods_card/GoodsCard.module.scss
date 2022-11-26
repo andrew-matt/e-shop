@@ -28,6 +28,7 @@
     background: #f6f6f6;
     overflow: hidden;
     border-radius: 8px;
+
     &:hover {
 
       .addToCartButton {
@@ -56,6 +57,19 @@
       left: 0;
       top: 50%;
       transform: translate(0,-50%);
+    }
+
+    .imageLoading {
+      display: none;
+    }
+
+    .preloader {
+      top: calc(50% - 1.5em);
+      left: calc(50% - 1.5em);
+      width: 3em;
+      height: 3em;
+      border: 0.5em solid rgba(25, 118, 210, 0.2);
+      border-left: 0.5em solid #1976d2;
     }
 
     .addToCartButton {

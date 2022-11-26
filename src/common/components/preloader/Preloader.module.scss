@@ -1,0 +1,20 @@
+.preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6em;
+  height: 6em;
+  border: .9em solid rgba(25, 118, 210, 0.2);
+  border-left: .9em solid #1976d2;
+  border-radius: 50%;
+  animation: preloader 1s infinite linear;
+}
+
+@keyframes preloader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
