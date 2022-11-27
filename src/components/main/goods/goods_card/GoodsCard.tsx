@@ -40,7 +40,7 @@ export const GoodsCard: FC<GoodsCardPropsType> = ({ goodsItem }) => {
         {imageLoading && <Preloader className={style.preloader} />}
         <Button
           className={style.addToCartButton}
-          title="Добавить в корзину"
+          title="Add to cart"
           onClick={onAddToCartButtonClickHandler}
         />
       </div>

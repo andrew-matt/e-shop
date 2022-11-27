@@ -13,7 +13,17 @@ import {
   selectGoodsTotalCount,
 } from 'components/cart/cart_order/cart-order-selectors';
 
-export const CartOrder: FC = () => {
+type CartOrderPropsType = {
+  buttonTitle: string;
+  onButtonClick?: () => void;
+  form?: string;
+};
+
+export const CartOrder: FC<CartOrderPropsType> = ({
+  buttonTitle,
+  onButtonClick,
+  form,
+}) => {
   const goodsTotalCost = useSelector(selectGoodsTotalCost);
   const goodsTotalCount = useSelector(selectGoodsTotalCount);
   const goodsTotalCostWithoutDiscount = useSelector(selectGoodsTotalCostWithoutDiscount);
@@ -25,19 +35,25 @@ export const CartOrder: FC = () => {
         <div className={style.cartOrder}>
           <div className={style.cartOrderTop}>
             <p className={style.totalLine}>
-              <span>Итого</span>
+              <span>Order total</span>
               <span>{priceFormatter(goodsTotalCost)} р.</span>
             </p>
             <div className={style.countLine}>
-              <span>Товары, {goodsTotalCount} шт.</span>
+              <span>Goods, {goodsTotalCount} items</span>
               <span>{priceFormatter(goodsTotalCostWithoutDiscount)} р.</span>
             </div>
             <div className={style.discountLine}>
-              <span>Скидка</span>
+              <span>Discount</span>
               <span>&ndash; {priceFormatter(discount)} р.</span>
             </div>
           </div>
-          <Button className={style.cartOrderButton} title="Заказать" onClick={() => {}} />
+          <Button
+            className={style.cartOrderButton}
+            title={buttonTitle}
+            onClick={onButtonClick}
+            form={form}
+            submit
+          />
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ export const CartList: FC = () => {
       <div className={style.cartList}>
         <div className={style.cartListHeaderWrapper}>
           <h1 className={style.cartListHeader} data-count={goodsTotalCount}>
-            Корзина
+            Cart
           </h1>
         </div>
         {goodsInCart.map(goodsItem => {

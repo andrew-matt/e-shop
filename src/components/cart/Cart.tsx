@@ -1,6 +1,7 @@
 import { FC, ReactNode, useEffect, useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import style from './Cart.module.scss';
 
@@ -16,6 +17,10 @@ export const Cart: FC = () => {
   const goodsInCart = useSelector(selectGoodsFromCart);
 
   const [imageLoading, setImageLoading] = useState(true);
+
+  const navigate = useNavigate();
+
+  const onCartOrderButtonClickHandler = (): void => navigate('/order');
 
   useEffect(() => {
     dispatch(updateCart());
@@ -48,7 +53,10 @@ export const Cart: FC = () => {
       {showEmptyCart() || (
         <div className={style.cart}>
           <CartList />
-          <CartOrder />
+          <CartOrder
+            buttonTitle="Proceed to checkout"
+            onButtonClick={onCartOrderButtonClickHandler}
+          />
         </div>
       )}
     </div>

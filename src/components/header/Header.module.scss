@@ -10,8 +10,8 @@
   align-items: center;
   padding: 0 20px;
 
-  .mainPageButton {
-    @include CommonButtonStyle;
+  .navButton {
+    @include commonButtonStyle;
     padding: 11px 40px;
   }
 

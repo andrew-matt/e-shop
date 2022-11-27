@@ -17,21 +17,31 @@ export const Header: FC = () => {
 
   const location = useLocation();
 
-  const onMainPageButtonClickHandler = (): void => navigate('/');
-
   const showGoodsTotalCost = (): ReactNode => {
     if (goodsTotalCost > 0) {
       return <span className={style.totalCost}>{priceFormatter(goodsTotalCost)} р.</span>;
     }
   };
 
-  const showMainPageButton = (): ReactNode => {
-    if (location.pathname !== '/') {
+  const showNavButton = (): ReactNode => {
+    const onMainPageButtonClickHandler = (): void => navigate('/');
+    const onCartButtonClickHandler = (): void => navigate('/cart');
+
+    if (location.pathname === '/cart') {
       return (
         <Button
-          className={style.mainPageButton}
-          title="Перейти на главную"
+          className={style.navButton}
+          title="Return to main page"
           onClick={onMainPageButtonClickHandler}
+        />
+      );
+    }
+    if (location.pathname === '/order') {
+      return (
+        <Button
+          className={style.navButton}
+          title="Return to cart"
+          onClick={onCartButtonClickHandler}
         />
       );
     }
@@ -39,7 +49,7 @@ export const Header: FC = () => {
 
   return (
     <div className={style.header}>
-      {showMainPageButton()}
+      {showNavButton()}
       <div className={style.cartButtonWrapper}>
         {showGoodsTotalCost()}
         <CartButton />

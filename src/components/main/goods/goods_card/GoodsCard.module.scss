@@ -1,3 +1,5 @@
+@import 'src/common/styles/sass/variables';
+
 .goodsCard {
   cursor: pointer;
   width: calc(100%/12*6 - 8px);
@@ -69,7 +71,7 @@
       width: 3em;
       height: 3em;
       border: 0.5em solid rgba(25, 118, 210, 0.2);
-      border-left: 0.5em solid #1976d2;
+      border-left: 0.5em solid $mainColor;
     }
 
     .addToCartButton {
@@ -79,7 +81,7 @@
       border-radius: 50px;
       background-color: rgba(255,255,255,.9);
       cursor: pointer;
-      padding: 10px 11px;
+      padding: 10px 30px;
       border: none;
       position: absolute;
       top: 50%;

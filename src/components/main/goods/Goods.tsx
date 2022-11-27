@@ -27,7 +27,7 @@ export const Goods: FC = () => {
         <Preloader />
       ) : (
         <>
-          <h2 className={style.goodsHeader}>Хиты продаж</h2>
+          <h2 className={style.goodsHeader}>Top sales</h2>
           <div className={style.goodsWrapper}>
             {goodsInStore.length !== 0 &&
               goodsInStore.map((goodsItem: any) => {

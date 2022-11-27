@@ -1,3 +1,5 @@
+@import 'src/common/styles/sass/variables';
+
 .preloader {
   position: absolute;
   top: 50%;
@@ -5,7 +7,7 @@
   width: 6em;
   height: 6em;
   border: .9em solid rgba(25, 118, 210, 0.2);
-  border-left: .9em solid #1976d2;
+  border-left: .9em solid $mainColor;
   border-radius: 50%;
   animation: preloader 1s infinite linear;
 }

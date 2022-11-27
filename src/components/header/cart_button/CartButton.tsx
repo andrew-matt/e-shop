@@ -26,7 +26,7 @@ export const CartButton: FC = () => {
         <ShoppingCartIcon color="primary" />
         {showGoodsTotalCount()}
       </div>
-      <span className={style.text}>Корзина</span>
+      <span className={style.text}>Cart</span>
     </div>
   );
 };

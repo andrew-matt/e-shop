@@ -54,7 +54,7 @@
       }
 
       .cartOrderButton {
-        @include CommonButtonStyle;
+        @include commonButtonStyle;
         width: 100%;
       }
 
