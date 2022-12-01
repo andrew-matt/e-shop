@@ -5,12 +5,25 @@ import { useField } from 'formik';
 
 import style from './CustomInput.module.scss';
 
-export const CustomInput: FC<CustomInputPropsType> = ({ ...props }): ReactElement => {
-  const [field, meta] = useField(props);
+export const CustomInput: FC<CustomInputPropsType> = ({
+  name,
+  placeholder,
+  className,
+}): ReactElement => {
+  const [field, meta] = useField({
+    name,
+    placeholder,
+    className,
+  });
 
   return (
     <>
-      <input className={style.input} {...field} {...props} />
+      <input
+        className={`${style.input} ${className}`}
+        {...field}
+        name={name}
+        placeholder={placeholder}
+      />
       {meta.touched && meta.error ? (
         <div className={style.error}>{meta.error}</div>
       ) : null}
@@ -22,4 +35,5 @@ export const CustomInput: FC<CustomInputPropsType> = ({ ...props }): ReactElemen
 type CustomInputPropsType = {
   name: string;
   placeholder?: string;
+  className?: string;
 };

@@ -19,24 +19,12 @@
       box-shadow: 0 0 20px rgb(0 0 0 / 10%);
       border-radius: 12px;
 
-      input {
-        margin-bottom: 20px;
-        border: 1px solid #d5d5d5;
-        border-radius: 8px;
-        font-size: 16px;
-        color: #242424;
-        padding: 10px 14px 11px;
-        height: 44px;
-        outline: 0;
-
-        &:focus {
-          border-color: $mainColor;
-          box-shadow: inset 1px 0 0 $mainColor, inset 0 1px 0 $mainColor, inset -1px 0 0 $mainColor, inset 0 -1px 0 $mainColor;
-        }
+      & input {
+        margin-top: 20px;
       }
 
-      input:last-child {
-        margin-bottom: 0;
+      & input:first-child {
+        margin-top: 0;
       }
     }
   }
