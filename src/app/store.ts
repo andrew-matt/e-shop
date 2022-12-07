@@ -6,9 +6,9 @@ import { appReducer } from 'app/app-reducer';
 import { appWatcherSaga } from 'app/app-sagas';
 import { snackBarReducer } from 'common/components/snack_bar/snackBar-reducer';
 import { loadState, saveState } from 'common/utils/local-storage-utils';
+import { authReducer } from 'components/auth/auth-reducer';
+import { authWatcherSaga } from 'components/auth/auth-sagas';
 import { cartReducer } from 'components/cart/cart-reducer';
-import { authReducer } from 'components/login/auth/auth-reducer';
-import { loginWatcherSaga } from 'components/login/login-sagas';
 import { goodsReducer } from 'components/main/goods/goods-reducer';
 import { goodsWatcherSaga } from 'components/main/goods/goods-sagas';
 
@@ -41,7 +41,7 @@ store.subscribe(() => {
 sagaMiddleware.run(rootWatcher);
 
 function* rootWatcher(): Generator<any, void> {
-  yield all([appWatcherSaga(), goodsWatcherSaga(), loginWatcherSaga()]);
+  yield all([appWatcherSaga(), authWatcherSaga(), goodsWatcherSaga()]);
 }
 
 // @ts-ignore

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
 import { useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import style from './CartOrder.module.scss';
 
@@ -11,6 +12,7 @@ import {
   selectGoodsTotalCost,
   selectGoodsTotalCostWithoutDiscount,
   selectGoodsTotalCount,
+  selectIsLoggedIn,
 } from 'components/cart/cart_order/cart-order-selectors';
 
 type CartOrderPropsType = {
@@ -28,6 +30,7 @@ export const CartOrder: FC<CartOrderPropsType> = ({
   const goodsTotalCount = useSelector(selectGoodsTotalCount);
   const goodsTotalCostWithoutDiscount = useSelector(selectGoodsTotalCostWithoutDiscount);
   const discount = useSelector(selectDiscount);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <div className={style.cartFormSidebar}>
@@ -47,13 +50,19 @@ export const CartOrder: FC<CartOrderPropsType> = ({
               <span>&ndash; {priceFormatter(discount)} р.</span>
             </div>
           </div>
-          <Button
-            className={style.cartOrderButton}
-            title={buttonTitle}
-            onClick={onButtonClick}
-            form={form}
-            submit
-          />
+          {isLoggedIn ? (
+            <Button
+              className={style.cartOrderButton}
+              title={buttonTitle}
+              onClick={onButtonClick}
+              form={form}
+              submit
+            />
+          ) : (
+            <div>
+              Please, <NavLink to="/login">sign in</NavLink> to proceed to checkout.
+            </div>
+          )}
         </div>
       </div>
     </div>

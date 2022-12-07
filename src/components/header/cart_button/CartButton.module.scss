@@ -1,15 +1,21 @@
 @import 'src/common/styles/sass/variables';
 
-.button {
+.cartButton {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  padding: 0 10px;
   cursor: pointer;
   transition: .4s;
 
+  &:hover {
+    color: $mainColor;
+  }
+
   .iconWrapper {
     position: relative;
+    display: flex;
 
     .notification {
       font-size: 10px;
@@ -32,8 +38,4 @@
   .text {
     font-size: 14px;
   }
-}
-
-.button:hover {
-  color: $mainColor;
 }

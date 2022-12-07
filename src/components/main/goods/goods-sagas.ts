@@ -4,6 +4,7 @@ import { api } from 'api/api';
 import { setIsLoading } from 'app/app-reducer';
 import { GoodsItemType, setGoods } from 'components/main/goods/goods-reducer';
 
+// sagas
 export function* fetchGoodsWorkerSaga(): Generator<any, void, GoodsItemType[]> {
   yield put(setIsLoading({ isLoading: true }));
   const goods: GoodsItemType[] = yield call(api.getGoods);
@@ -12,9 +13,10 @@ export function* fetchGoodsWorkerSaga(): Generator<any, void, GoodsItemType[]> {
   yield put(setIsLoading({ isLoading: false }));
 }
 
-export const fetchGoods = (): { type: string } =>
-  ({ type: 'GOODS/FETCH-GOODS' } as const);
+// actions
+export const fetchGoods = () => ({ type: 'GOODS/FETCH-GOODS' } as const);
 
+// watcher
 export function* goodsWatcherSaga(): Generator {
   yield takeEvery('GOODS/FETCH-GOODS', fetchGoodsWorkerSaga);
 }

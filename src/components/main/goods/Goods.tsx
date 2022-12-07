@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import style from './Goods.module.scss';
 
-import { Preloader } from 'common/components/preloader/Preloader';
+import { PreloaderCircular } from 'common/components/preloaders/preloader_circular/PreloaderCircular';
 import { fetchGoods } from 'components/main/goods/goods-sagas';
 import {
   selectGoodsFromStore,
@@ -24,7 +24,7 @@ export const Goods: FC = () => {
   return (
     <div>
       {isLoading ? (
-        <Preloader />
+        <PreloaderCircular />
       ) : (
         <>
           <h2 className={style.goodsHeader}>Top sales</h2>

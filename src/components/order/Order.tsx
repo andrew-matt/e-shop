@@ -1,6 +1,8 @@
 import { FC } from 'react';
 
 import { Formik } from 'formik';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
 import style from './Order.module.scss';
@@ -8,6 +10,7 @@ import style from './Order.module.scss';
 import { CustomForm } from 'common/components/formik/custom_form/CustomForm';
 import { CustomInput } from 'common/components/formik/custom_input/CustomInput';
 import { CartOrder } from 'components/cart/cart_order/CartOrder';
+import { selectIsLoggedIn } from 'components/order/order-selectors';
 
 export const Order: FC = () => {
   const initialValues = {
@@ -25,6 +28,12 @@ export const Order: FC = () => {
     name: Yup.string().required('Name is required'),
     phone: Yup.string().required('Phone number is required'),
   });
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  if (!isLoggedIn) {
+    return <Navigate to="/cart" />;
+  }
 
   return (
     <div className={style.container}>

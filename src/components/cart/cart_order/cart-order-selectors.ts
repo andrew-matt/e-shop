@@ -10,3 +10,6 @@ export const selectGoodsTotalCostWithoutDiscount = (state: AppRootStateType): nu
   state.cart.goodsTotalCostWithoutDiscount;
 
 export const selectDiscount = (state: AppRootStateType): number => state.cart.discount;
+
+export const selectIsLoggedIn = (state: AppRootStateType): boolean =>
+  state.auth.isLoggedIn;

@@ -1,9 +1,9 @@
-@import 'src/common/styles/sass/variables';
+@import '../../../styles/sass/variables';
 
 .preloader {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: calc(50% - 3em);
+  left: calc(50% - 3em);
   width: 6em;
   height: 6em;
   border: .9em solid rgba(25, 118, 210, 0.2);

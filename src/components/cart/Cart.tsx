@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import style from './Cart.module.scss';
 
 import emptyCart from 'assets/app_images/empty-cart.png';
-import { Preloader } from 'common/components/preloader/Preloader';
+import { PreloaderCircular } from 'common/components/preloaders/preloader_circular/PreloaderCircular';
 import { updateCart } from 'components/cart/cart-reducer';
 import { selectGoodsFromCart } from 'components/cart/cart-selectors';
 import { CartList } from 'components/cart/cart_list/CartList';
@@ -39,7 +39,7 @@ export const Cart: FC = () => {
             onLoad={onImageLoadHandler}
           />
           {imageLoading ? (
-            <Preloader />
+            <PreloaderCircular />
           ) : (
             <div className={style.text}>Ваша корзина пуста</div>
           )}

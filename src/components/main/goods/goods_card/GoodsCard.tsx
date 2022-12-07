@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import style from './GoodsCard.module.scss';
 
 import { Button } from 'common/components/button/Button';
-import { Preloader } from 'common/components/preloader/Preloader';
+import { PreloaderCircular } from 'common/components/preloaders/preloader_circular/PreloaderCircular';
 import { priceFormatter } from 'common/utils/utils';
 import { addGoodsItem, updateCart } from 'components/cart/cart-reducer';
 import { GoodsItemType } from 'components/main/goods/goods-reducer';
@@ -37,7 +37,7 @@ export const GoodsCard: FC<GoodsCardPropsType> = ({ goodsItem }) => {
           className={`${style.image} ${imageLoading && style.imageLoading}`}
           onLoad={onImageLoadHandler}
         />
-        {imageLoading && <Preloader className={style.preloader} />}
+        {imageLoading && <PreloaderCircular className={style.preloaderCircular} />}
         <Button
           className={style.addToCartButton}
           title="Add to cart"

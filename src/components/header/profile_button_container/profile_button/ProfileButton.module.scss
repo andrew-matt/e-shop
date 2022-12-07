@@ -1,0 +1,25 @@
+@import 'src/common/styles/sass/variables';
+
+.profileButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 10px;
+  cursor: pointer;
+  transition: .4s;
+  position: relative;
+
+  &:hover {
+    color: $mainColor;
+  }
+
+  .iconWrapper {
+    display: flex;
+  }
+
+  .text {
+    font-size: 14px;
+  }
+}
+

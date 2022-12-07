@@ -13,9 +13,14 @@ export const slice = createSlice({
       state.userEmail = action.payload.userEmail;
       state.userId = action.payload.userId;
     },
+    removeAuth(state) {
+      state.isLoggedIn = false;
+      state.userEmail = '';
+      state.userId = '';
+    },
   },
 });
 
 export const authReducer = slice.reducer;
 
-export const { setAuth } = slice.actions;
+export const { setAuth, removeAuth } = slice.actions;

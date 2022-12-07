@@ -9,21 +9,26 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  position: relative;
 
   .navButton {
     @include commonButtonStyle;
     padding: 11px 40px;
   }
 
-  .cartButtonWrapper {
+  .menuWrapper {
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
 
-    .totalCost {
-      margin-right: 20px;
-      font-size: 18px;
+    .cartButtonWrapper {
+      display: flex;
+      align-items: flex-end;
+
+      .totalCost {
+        margin-right: 20px;
+        font-size: 18px;
+      }
     }
   }
 }

@@ -21,7 +21,11 @@ export const CartButton: FC = () => {
   const onCartButtonClickHandler = (): void => navigate('/cart');
 
   return (
-    <div className={style.button} onClick={onCartButtonClickHandler} role="presentation">
+    <div
+      className={style.cartButton}
+      onClick={onCartButtonClickHandler}
+      role="presentation"
+    >
       <div className={style.iconWrapper}>
         <ShoppingCartIcon color="primary" />
         {showGoodsTotalCount()}

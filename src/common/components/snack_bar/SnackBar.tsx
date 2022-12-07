@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { FC } from 'react';
+import { FC, forwardRef, SyntheticEvent } from 'react';
 
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
@@ -12,7 +11,7 @@ import {
   selectTitle,
 } from 'common/components/snack_bar/snackBar-selectors';
 
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
+const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
@@ -30,7 +29,7 @@ export const SnackBar: FC = () => {
   const autoHideDuration =
     title.length < titleLength ? minAutoHideDuration : maxAutoHideDuration;
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string): void => {
+  const handleClose = (event?: SyntheticEvent | Event, reason?: string): void => {
     if (reason === 'clickaway') {
       return;
     }

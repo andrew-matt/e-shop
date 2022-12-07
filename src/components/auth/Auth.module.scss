@@ -3,6 +3,7 @@
 .container {
   @include mainPageContainer;
   justify-content: center;
+  position: relative;
 
   .form {
     min-width: 300px;
@@ -23,6 +24,11 @@
       margin-top: 20px;
       padding: 8px 30px;
       border-radius: 16px;
+
+      &:disabled  {
+        cursor: auto;
+        opacity: .5;
+      }
     }
   }
 }
