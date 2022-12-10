@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import style from './GoodsCard.module.scss';
 
@@ -9,6 +9,8 @@ import { PreloaderCircular } from 'common/components/preloaders/preloader_circul
 import { priceFormatter } from 'common/utils/utils';
 import { addGoodsItem, updateCart } from 'components/cart/cart-reducer';
 import { GoodsItemType } from 'components/main/goods/goods-reducer';
+import { selectGoodsInCart } from 'components/main/goods/goods_card/goods-card-selectors';
+import { setOrderIsComplete } from 'components/order/order-reducer';
 
 type GoodsCardPropsType = {
   goodsItem: GoodsItemType;
@@ -19,11 +21,17 @@ export const GoodsCard: FC<GoodsCardPropsType> = ({ goodsItem }) => {
 
   const dispatch = useDispatch();
 
+  const goodsInCart = useSelector(selectGoodsInCart);
+
   const [imageLoading, setImageLoading] = useState(true);
 
   const onAddToCartButtonClickHandler = (): void => {
     dispatch(addGoodsItem({ goodsItem }));
     dispatch(updateCart());
+
+    if (goodsInCart.length === 0) {
+      dispatch(setOrderIsComplete({ orderIsComplete: false }));
+    }
   };
 
   const onImageLoadHandler = (): void => setImageLoading(false);

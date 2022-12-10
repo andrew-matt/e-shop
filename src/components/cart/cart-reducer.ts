@@ -62,10 +62,22 @@ export const slice = createSlice({
           ),
       );
     },
+    emptyCart(state) {
+      state.goodsInCart = [];
+      state.goodsTotalCount = 0;
+      state.goodsTotalCost = 0;
+      state.goodsTotalCostWithoutDiscount = 0;
+      state.discount = 0;
+    },
   },
 });
 
 export const cartReducer = slice.reducer;
 
-export const { addGoodsItem, removeGoodsItem, changeGoodsItemAmount, updateCart } =
-  slice.actions;
+export const {
+  addGoodsItem,
+  removeGoodsItem,
+  changeGoodsItemAmount,
+  updateCart,
+  emptyCart,
+} = slice.actions;

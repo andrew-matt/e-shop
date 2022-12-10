@@ -1,13 +1,13 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { api } from 'api/api';
+import { goodsApi } from 'apis/goods-api';
 import { setIsLoading } from 'app/app-reducer';
 import { GoodsItemType, setGoods } from 'components/main/goods/goods-reducer';
 
 // sagas
 export function* fetchGoodsWorkerSaga(): Generator<any, void, GoodsItemType[]> {
   yield put(setIsLoading({ isLoading: true }));
-  const goods: GoodsItemType[] = yield call(api.getGoods);
+  const goods: GoodsItemType[] = yield call(goodsApi.getGoods);
 
   yield put(setGoods({ goods }));
   yield put(setIsLoading({ isLoading: false }));

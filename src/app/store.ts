@@ -11,6 +11,8 @@ import { authWatcherSaga } from 'components/auth/auth-sagas';
 import { cartReducer } from 'components/cart/cart-reducer';
 import { goodsReducer } from 'components/main/goods/goods-reducer';
 import { goodsWatcherSaga } from 'components/main/goods/goods-sagas';
+import { orderReducer } from 'components/order/order-reducer';
+import { orderWatcherSaga } from 'components/order/order-sagas';
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -18,6 +20,7 @@ const rootReducer = combineReducers({
   snackBar: snackBarReducer,
   goods: goodsReducer,
   cart: cartReducer,
+  order: orderReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -30,18 +33,20 @@ export const store = configureStore({
 
 store.subscribe(() => {
   saveState({
-    app: store.getState().app,
-    auth: store.getState().auth,
-    snackBar: store.getState().snackBar,
-    goods: store.getState().goods,
     cart: store.getState().cart,
+    order: store.getState().order,
   });
 });
 
 sagaMiddleware.run(rootWatcher);
 
 function* rootWatcher(): Generator<any, void> {
-  yield all([appWatcherSaga(), authWatcherSaga(), goodsWatcherSaga()]);
+  yield all([
+    appWatcherSaga(),
+    authWatcherSaga(),
+    goodsWatcherSaga(),
+    orderWatcherSaga(),
+  ]);
 }
 
 // @ts-ignore

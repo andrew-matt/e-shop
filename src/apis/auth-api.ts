@@ -7,7 +7,7 @@ import {
 
 import { auth } from 'firebase-config';
 
-export const authAPI = {
+export const authApi = {
   initializeApp() {
     return new Promise(res => {
       onAuthStateChanged(auth, user => {

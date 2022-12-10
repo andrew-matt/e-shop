@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { authAPI } from 'api/auth-api';
+import { authApi } from 'apis/auth-api';
 import { setIsFetching } from 'app/app-reducer';
 import { SignedInUserDataType } from 'app/app-sagas';
 import { showSnackBar } from 'common/components/snack_bar/snackBar-reducer';
@@ -14,7 +14,7 @@ export function* signUpWorkerSaga(
   try {
     yield put(setIsFetching({ isFetching: true }));
     const { userEmail, userId } = yield call(
-      authAPI.signUp,
+      authApi.signUp,
       action.email,
       action.password,
     );
@@ -41,7 +41,7 @@ export function* signInWorkerSaga(
   try {
     yield put(setIsFetching({ isFetching: true }));
     const { userEmail, userId } = yield call(
-      authAPI.signIn,
+      authApi.signIn,
       action.email,
       action.password,
     );
@@ -61,7 +61,7 @@ export function* signInWorkerSaga(
 
 export function* signOutWorkerSaga(): Generator<any, void> {
   try {
-    yield call(authAPI.signOut);
+    yield call(authApi.signOut);
     yield put(removeAuth());
     yield put(showSnackBar({ title: `You're now logged out.`, severity: 'success' }));
   } catch (error) {

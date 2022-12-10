@@ -3,7 +3,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { GoodsItemType } from 'components/main/goods/goods-reducer';
 import { db } from 'firebase-config';
 
-export const api = {
+export const goodsApi = {
   async getGoods(): Promise<GoodsItemType[] | undefined> {
     const docRef = doc(db, 'e-shop', 'goods');
     const docSnap = await getDoc(docRef);

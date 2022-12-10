@@ -1,23 +1,31 @@
 import { AppRootStateType } from 'app/store';
+import { cartReducer } from 'components/cart/cart-reducer';
+import { orderReducer } from 'components/order/order-reducer';
 
 export const loadState = (): AppRootStateType | undefined => {
   try {
-    const serializedStateCart = localStorage.getItem('cart');
+    const serializedState = localStorage.getItem('state');
 
-    if (serializedStateCart === null) {
+    if (serializedState === null) {
       return undefined;
     }
 
-    return JSON.parse(serializedStateCart);
+    return JSON.parse(serializedState);
   } catch (err) {
     return undefined;
   }
 };
 
-export const saveState = (state: AppRootStateType): void => {
+export const saveState = (state: StateArgumentType): void => {
   try {
-    localStorage.setItem('cart', JSON.stringify({ cart: state.cart }));
+    localStorage.setItem('state', JSON.stringify(state));
   } catch (err) {
     // ignore write errors
   }
+};
+
+// types
+type StateArgumentType = {
+  cart: ReturnType<typeof cartReducer>;
+  order: ReturnType<typeof orderReducer>;
 };

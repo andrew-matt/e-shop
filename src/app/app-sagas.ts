@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 
-import { authAPI } from 'api/auth-api';
+import { authApi } from 'apis/auth-api';
 import { setIsInitialized } from 'app/app-reducer';
 import { setAuth } from 'components/auth/auth-reducer';
 
@@ -11,7 +11,7 @@ export function* initializeAppWorkerSaga(): Generator<
   SignedInUserDataType | null
 > {
   try {
-    const data = yield call(authAPI.initializeApp);
+    const data = yield call(authApi.initializeApp);
 
     if (data !== null) {
       const { userEmail, userId } = data;

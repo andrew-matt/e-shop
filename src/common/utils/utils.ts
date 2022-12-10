@@ -11,3 +11,7 @@ export const priceFormatter = (price: number): string => {
 export const priceCountHandler = (price: number): number => {
   return +price.toFixed(fractionDigits);
 };
+
+export const convertDate = (date: Date): string => {
+  return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+};
