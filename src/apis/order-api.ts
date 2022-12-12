@@ -1,4 +1,4 @@
-import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { arrayUnion, doc, setDoc } from 'firebase/firestore';
 import { FormikValues } from 'formik';
 
 import { convertDate } from 'common/utils/utils';
@@ -11,18 +11,22 @@ export const orderApi = {
     values: FormikValues,
     goodsIDs: number[],
   ) {
-    const docRef = doc(db, 'e-shop', 'orders');
+    const docRef = doc(db, 'orders', userId);
     const date = convertDate(new Date());
 
-    await updateDoc(docRef, {
-      [userId]: arrayUnion({
-        date,
-        userEmail,
-        order: {
-          userData: values,
-          orderedGoods: goodsIDs,
-        },
-      }),
-    });
+    await setDoc(
+      docRef,
+      {
+        orders: arrayUnion({
+          date,
+          userEmail,
+          order: {
+            userData: values,
+            orderedGoods: goodsIDs,
+          },
+        }),
+      },
+      { merge: true },
+    );
   },
 };

@@ -13,6 +13,8 @@ import { goodsReducer } from 'components/main/goods/goods-reducer';
 import { goodsWatcherSaga } from 'components/main/goods/goods-sagas';
 import { orderReducer } from 'components/order/order-reducer';
 import { orderWatcherSaga } from 'components/order/order-sagas';
+import { userOrdersReducer } from 'components/user_orders/user-orders-reducer';
+import { userOrdersWatcherSaga } from 'components/user_orders/user-orders-sagas';
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -21,6 +23,7 @@ const rootReducer = combineReducers({
   goods: goodsReducer,
   cart: cartReducer,
   order: orderReducer,
+  userOrders: userOrdersReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware();
@@ -46,6 +49,7 @@ function* rootWatcher(): Generator<any, void> {
     authWatcherSaga(),
     goodsWatcherSaga(),
     orderWatcherSaga(),
+    userOrdersWatcherSaga(),
   ]);
 }
 

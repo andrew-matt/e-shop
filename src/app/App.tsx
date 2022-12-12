@@ -14,6 +14,7 @@ import { Cart } from 'components/cart/Cart';
 import { Header } from 'components/header/Header';
 import { Main } from 'components/main/Main';
 import { Order } from 'components/order/Order';
+import { UserOrders } from 'components/user_orders/UserOrders';
 
 export const App: FC = () => {
   const dispatch = useDispatch();
@@ -37,6 +38,7 @@ export const App: FC = () => {
         <Route path="/order" element={<Order />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/user-orders" element={<UserOrders />} />
       </Routes>
       <SnackBar />
     </div>

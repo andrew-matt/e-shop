@@ -1,0 +1,14 @@
+.orders {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .order {
+    border: 1px solid slategrey;
+    margin: 10px 0;
+
+    .orderInfoItem {
+      margin-bottom: 10px;
+    }
+  }
+}

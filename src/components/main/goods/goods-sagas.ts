@@ -7,7 +7,7 @@ import { GoodsItemType, setGoods } from 'components/main/goods/goods-reducer';
 // sagas
 export function* fetchGoodsWorkerSaga(): Generator<any, void, GoodsItemType[]> {
   yield put(setIsLoading({ isLoading: true }));
-  const goods: GoodsItemType[] = yield call(goodsApi.getGoods);
+  const goods = yield call(goodsApi.getGoods);
 
   yield put(setGoods({ goods }));
   yield put(setIsLoading({ isLoading: false }));
