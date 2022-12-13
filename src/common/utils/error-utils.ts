@@ -21,7 +21,8 @@ export const handleFirebaseAuthError = (error: unknown): string => {
       errorMessage = 'Password is too short (minimum is 6 characters).';
       break;
     default:
-      errorMessage = 'Some error occurred!';
+      // errorMessage = 'Some error occurred!';
+      errorMessage = err.code;
   }
 
   return errorMessage;

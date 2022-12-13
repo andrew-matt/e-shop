@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import style from './UserOrders.module.scss';
 
+import { GoodsItem } from 'components/cart/cart_list/goods_item/GoodsItem';
 import { fetchOrders } from 'components/user_orders/user-orders-sagas';
 import {
   selectIsLoggedIn,
@@ -42,9 +43,11 @@ export const UserOrders: FC = () => {
             </div>
             <div className={style.orderInfoItem}>
               <div>Ordered goods:</div>
-              {order.order.orderedGoods.map(goodsItem => {
-                return <div key={goodsItem}>{goodsItem}</div>;
-              })}
+              <div className={style.cartList}>
+                {order.order.orderedGoods.map(goodsItem => {
+                  return <GoodsItem key={goodsItem.id} goodsItem={goodsItem} />;
+                })}
+              </div>
             </div>
             <div>
               <div>Order details:</div>

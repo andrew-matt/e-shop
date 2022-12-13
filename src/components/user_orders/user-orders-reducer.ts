@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { GoodsItemType } from 'components/main/goods/goods-reducer';
+
 export const slice = createSlice({
   name: 'user-orders',
   initialState: {
@@ -21,7 +23,7 @@ export type OrderType = {
   date: string;
   userEmail: string;
   order: {
-    orderedGoods: number[];
+    orderedGoods: GoodsItemType[];
     userData: {
       country: string;
       region: string;

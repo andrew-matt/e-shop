@@ -6,6 +6,7 @@ import { setIsFetching } from 'app/app-reducer';
 import { showSnackBar } from 'common/components/snack_bar/snackBar-reducer';
 import { handleFirebaseAuthError } from 'common/utils/error-utils';
 import { emptyCart } from 'components/cart/cart-reducer';
+import { GoodsItemType } from 'components/main/goods/goods-reducer';
 import { setOrderIsComplete } from 'components/order/order-reducer';
 
 // sagas
@@ -19,7 +20,7 @@ export function* completeOrderWorkerSaga(
       action.userId,
       action.userEmail,
       action.values,
-      action.goodsIDs,
+      action.orderedGoods,
     );
     yield put(emptyCart());
     yield put(setOrderIsComplete({ orderIsComplete: true }));
@@ -37,8 +38,8 @@ export const completeOrder = (
   userId: string,
   userEmail: string,
   values: FormikValues,
-  goodsIDs: number[],
-) => ({ type: 'ORDER/COMPLETE-ORDER', userId, userEmail, values, goodsIDs } as const);
+  orderedGoods: GoodsItemType[],
+) => ({ type: 'ORDER/COMPLETE-ORDER', userId, userEmail, values, orderedGoods } as const);
 
 // watcher
 export function* orderWatcherSaga(): Generator {

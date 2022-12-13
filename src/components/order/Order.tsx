@@ -45,9 +45,7 @@ export const Order: FC = () => {
   const orderIsComplete = useSelector(selectOrderIsComplete);
 
   const handleSubmit = (values: FormikValues): void => {
-    const goodsIDs = goodsInCart.map(goodsItem => goodsItem.id);
-
-    dispatch(completeOrder(userId, userEmail, values, goodsIDs));
+    dispatch(completeOrder(userId, userEmail, values, goodsInCart));
   };
 
   if (!isLoggedIn || (goodsInCart.length === 0 && !orderIsComplete)) {
