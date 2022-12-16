@@ -4,7 +4,7 @@ import { all } from 'redux-saga/effects';
 
 import { appReducer } from 'app/app-reducer';
 import { appWatcherSaga } from 'app/app-sagas';
-import { snackBarReducer } from 'common/components/snack_bar/snackBar-reducer';
+import { snackBarReducer } from 'common/components/mui/snack_bar/snackBar-reducer';
 import { loadState, saveState } from 'common/utils/local-storage-utils';
 import { authReducer } from 'components/auth/auth-reducer';
 import { authWatcherSaga } from 'components/auth/auth-sagas';

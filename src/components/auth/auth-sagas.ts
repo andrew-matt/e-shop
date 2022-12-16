@@ -3,7 +3,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { authApi } from 'apis/auth-api';
 import { setIsFetching } from 'app/app-reducer';
 import { SignedInUserDataType } from 'app/app-sagas';
-import { showSnackBar } from 'common/components/snack_bar/snackBar-reducer';
+import { showSnackBar } from 'common/components/mui/snack_bar/snackBar-reducer';
 import { handleFirebaseAuthError } from 'common/utils/error-utils';
 import { removeAuth, setAuth } from 'components/auth/auth-reducer';
 

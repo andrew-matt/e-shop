@@ -3,7 +3,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 
 import { orderApi } from 'apis/order-api';
 import { setIsFetching } from 'app/app-reducer';
-import { showSnackBar } from 'common/components/snack_bar/snackBar-reducer';
+import { showSnackBar } from 'common/components/mui/snack_bar/snackBar-reducer';
 import { handleFirebaseAuthError } from 'common/utils/error-utils';
 import { emptyCart } from 'components/cart/cart-reducer';
 import { GoodsItemType } from 'components/main/goods/goods-reducer';

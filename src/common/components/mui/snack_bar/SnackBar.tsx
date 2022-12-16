@@ -4,12 +4,12 @@ import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { hideSnackBar } from 'common/components/snack_bar/snackBar-reducer';
+import { hideSnackBar } from 'common/components/mui/snack_bar/snackBar-reducer';
 import {
   selectOpen,
   selectSeverity,
   selectTitle,
-} from 'common/components/snack_bar/snackBar-selectors';
+} from 'common/components/mui/snack_bar/snackBar-selectors';
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;

@@ -2,7 +2,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 
 import { userOrdersApi } from 'apis/user-orders-api';
 import { setIsLoading } from 'app/app-reducer';
-import { showSnackBar } from 'common/components/snack_bar/snackBar-reducer';
+import { showSnackBar } from 'common/components/mui/snack_bar/snackBar-reducer';
 import { handleFirebaseAuthError } from 'common/utils/error-utils';
 import { OrderType, setOrders } from 'components/user_orders/user-orders-reducer';
 
