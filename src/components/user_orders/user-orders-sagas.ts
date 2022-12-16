@@ -15,7 +15,6 @@ export function* fetchOrdersWorkerSaga(
     const orders = yield call(userOrdersApi.getUserOrders, action.userId);
 
     yield put(setOrders({ orders }));
-    console.log(orders);
   } catch (error) {
     const errorMessage = handleFirebaseAuthError(error);
 

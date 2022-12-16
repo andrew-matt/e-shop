@@ -1,69 +1,125 @@
-import { FC, ReactNode } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 
-import { useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Toolbar from '@mui/material/Toolbar';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import style from './Header.module.scss';
-
-import { Button } from 'common/components/button/Button';
+import cartIcon from 'assets/icons/cart.svg';
+import userIcon from 'assets/icons/user.svg';
+import { CustomBadge } from 'common/components/badge/Badge';
 import { PreloaderLinear } from 'common/components/preloaders/preloader_linear/PreloaderLinear';
-import { priceFormatter } from 'common/utils/utils';
-import { CartButton } from 'components/header/cart_button/CartButton';
+import { signOut } from 'components/auth/auth-sagas';
 import {
-  selectGoodsTotalCost,
+  selectGoodsAmount,
   selectIsFetching,
+  selectIsLoggedIn,
 } from 'components/header/header-selectors';
-import { ProfileButtonContainer } from 'components/header/profile_button_container/ProfileButtonContainer';
+import style from 'components/header/Header.module.scss';
 
 export const Header: FC = () => {
-  const goodsTotalCost = useSelector(selectGoodsTotalCost);
+  const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const isFetching = useSelector(selectIsFetching);
+  const goodsAmount = useSelector(selectGoodsAmount);
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const navigate = useNavigate();
 
-  const location = useLocation();
-
-  const showGoodsTotalCost = (): ReactNode => {
-    if (goodsTotalCost > 0) {
-      return <span className={style.totalCost}>{priceFormatter(goodsTotalCost)} р.</span>;
-    }
+  const handleMenu = (event: MouseEvent<HTMLElement>): void => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const showNavButton = (): ReactNode => {
-    const onMainPageButtonClickHandler = (): void => navigate('/');
-    const onCartButtonClickHandler = (): void => navigate('/cart');
-
-    if (location.pathname === '/cart') {
-      return (
-        <Button
-          className={style.navButton}
-          title="Return to main page"
-          onClick={onMainPageButtonClickHandler}
-        />
-      );
-    }
-    if (location.pathname === '/order') {
-      return (
-        <Button
-          className={style.navButton}
-          title="Return to cart"
-          onClick={onCartButtonClickHandler}
-        />
-      );
-    }
+  const handleClose = (): void => {
+    setAnchorEl(null);
   };
+
+  const onLogoClickHandler = (): void => {
+    navigate('/');
+  };
+
+  const onSignInButtonClickHandler = (): void => {
+    navigate('/login');
+    setAnchorEl(null);
+  };
+
+  const onMyOrdersButtonClickHandler = (): void => {
+    navigate('/user-orders');
+    setAnchorEl(null);
+  };
+
+  const onSignOutButtonClickHandler = (): void => {
+    dispatch(signOut());
+    setAnchorEl(null);
+  };
+
+  const onCartButtonClickHandler = (): void => navigate('/cart');
 
   return (
-    <div className={style.header}>
-      {showNavButton()}
-      <div className={style.menuWrapper}>
-        <div className={style.cartButtonWrapper}>
-          {showGoodsTotalCost()}
-          <CartButton />
-        </div>
-        <ProfileButtonContainer />
-      </div>
+    <Box>
+      <AppBar position="static">
+        <Toolbar className={style.toolbar}>
+          <Button onClick={onLogoClickHandler}>
+            <div className={style.logo}>E-shop</div>
+          </Button>
+          <div>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <img src={userIcon} alt="user-icon" className={style.icon} />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              {isLoggedIn ? (
+                <div>
+                  <MenuItem onClick={onMyOrdersButtonClickHandler}>My orders</MenuItem>
+                  <MenuItem onClick={onSignOutButtonClickHandler}>Sign out</MenuItem>
+                </div>
+              ) : (
+                <MenuItem onClick={onSignInButtonClickHandler}>Sign in</MenuItem>
+              )}
+            </Menu>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={onCartButtonClickHandler}
+              color="inherit"
+            >
+              <CustomBadge badgeContent={goodsAmount}>
+                <img src={cartIcon} alt="cart-icon" className={style.icon} />
+              </CustomBadge>
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
       {isFetching && <PreloaderLinear />}
-    </div>
+    </Box>
   );
 };

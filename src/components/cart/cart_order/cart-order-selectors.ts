@@ -1,13 +1,13 @@
 import { AppRootStateType } from 'app/store';
 
 export const selectGoodsTotalCount = (state: AppRootStateType): number =>
-  state.cart.goodsTotalCount;
+  state.cart.goodsAmount;
 
 export const selectGoodsTotalCost = (state: AppRootStateType): number =>
-  state.cart.goodsTotalCost;
+  state.cart.goodsCost;
 
 export const selectGoodsTotalCostWithoutDiscount = (state: AppRootStateType): number =>
-  state.cart.goodsTotalCostWithoutDiscount;
+  state.cart.goodsCostWithoutDiscount;
 
 export const selectDiscount = (state: AppRootStateType): number => state.cart.discount;
 

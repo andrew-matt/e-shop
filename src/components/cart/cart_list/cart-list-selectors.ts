@@ -5,4 +5,4 @@ export const selectGoodsFromCart = (state: AppRootStateType): GoodsItemType[] =>
   state.cart.goodsInCart;
 
 export const selectGoodsTotalCount = (state: AppRootStateType): number =>
-  state.cart.goodsTotalCount;
+  state.cart.goodsAmount;

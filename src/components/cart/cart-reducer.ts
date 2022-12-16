@@ -7,9 +7,9 @@ export const slice = createSlice({
   name: 'cart',
   initialState: {
     goodsInCart: [] as GoodsItemType[],
-    goodsTotalCount: 0,
-    goodsTotalCost: 0,
-    goodsTotalCostWithoutDiscount: 0,
+    goodsAmount: 0,
+    goodsCost: 0,
+    goodsCostWithoutDiscount: 0,
     discount: 0,
   },
   reducers: {
@@ -46,11 +46,11 @@ export const slice = createSlice({
       }
     },
     updateCart(state) {
-      state.goodsTotalCount = state.goodsInCart.reduce((acc, cur) => acc + cur.amount, 0);
-      state.goodsTotalCost = priceCountHandler(
+      state.goodsAmount = state.goodsInCart.reduce((acc, cur) => acc + cur.amount, 0);
+      state.goodsCost = priceCountHandler(
         state.goodsInCart.reduce((acc, cur) => acc + cur.priceNow * cur.amount, 0),
       );
-      state.goodsTotalCostWithoutDiscount = priceCountHandler(
+      state.goodsCostWithoutDiscount = priceCountHandler(
         state.goodsInCart.reduce((acc, cur) => acc + cur.priceLast * cur.amount, 0),
       );
       state.discount = priceCountHandler(
@@ -64,9 +64,9 @@ export const slice = createSlice({
     },
     emptyCart(state) {
       state.goodsInCart = [];
-      state.goodsTotalCount = 0;
-      state.goodsTotalCost = 0;
-      state.goodsTotalCostWithoutDiscount = 0;
+      state.goodsAmount = 0;
+      state.goodsCost = 0;
+      state.goodsCostWithoutDiscount = 0;
       state.discount = 0;
     },
   },

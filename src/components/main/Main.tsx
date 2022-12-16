@@ -8,6 +8,8 @@ export const Main: FC = () => {
   return (
     <div className={style.container}>
       <Goods />
+      <Goods />
+      <Goods />
     </div>
   );
 };

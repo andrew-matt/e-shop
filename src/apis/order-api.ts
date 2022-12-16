@@ -15,8 +15,6 @@ export const orderApi = {
     const docRef = doc(db, 'orders', userId);
     const date = convertDate(new Date());
 
-    console.log(userId);
-
     await setDoc(
       docRef,
       {

@@ -1,34 +1,18 @@
-@import 'src/common/styles/sass/variables';
-@import 'src/common/styles/sass/mixins';
-
-.header {
-  height: $headerHeight;
-  background-color: #282c34;
-  color: white;
+.toolbar {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  position: relative;
+  background-color: white;
 
-  .navButton {
-    @include commonButtonStyle;
-    padding: 11px 40px;
+  .logo {
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: none;
   }
 
-  .menuWrapper {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-
-    .cartButtonWrapper {
-      display: flex;
-      align-items: flex-end;
-
-      .totalCost {
-        margin-right: 20px;
-        font-size: 18px;
-      }
-    }
+  .icon {
+    width: 28px;
+    height: 28px;
   }
 }
