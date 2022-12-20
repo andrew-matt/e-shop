@@ -59,3 +59,12 @@
     box-shadow: inset 1px 0 0 $mainColor, inset 0 1px 0 $mainColor, inset -1px 0 0 $mainColor, inset 0 -1px 0 $mainColor;
   }
 }
+
+@mixin preloaderCircularSize($size) {
+  top: calc(50% - $size / 2);
+  left: calc(50% - $size / 2);
+  width: $size;
+  height: $size;
+  border: calc($size / 6) solid rgba(46, 125, 50, 0.2);
+  border-left: calc($size / 6) solid $mainColor;
+}

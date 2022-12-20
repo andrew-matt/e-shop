@@ -1,13 +1,9 @@
 @import '../../../styles/sass/variables';
+@import '../../../styles/sass/mixins';
 
 .preloader {
+  @include preloaderCircularSize(6em);
   position: absolute;
-  top: calc(50% - 3em);
-  left: calc(50% - 3em);
-  width: 6em;
-  height: 6em;
-  border: .9em solid rgba(25, 118, 210, 0.2);
-  border-left: .9em solid $mainColor;
   border-radius: 50%;
   animation: preloader 1s infinite linear;
 }

@@ -1,3 +1,5 @@
+@import 'src/common/styles/sass/mixins';
+
 .goodsCardWrapper {
   width: 25%;
   padding: 16px;
@@ -36,6 +38,10 @@
         vertical-align: middle;
         display: inline-block;
         flex-shrink: 0;
+      }
+
+      .preloaderCircular {
+        @include preloaderCircularSize(3.5em);
       }
     }
 

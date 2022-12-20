@@ -1,24 +1,19 @@
 import { FC } from 'react';
 
-import { useSelector } from 'react-redux';
-
 import style from './CartList.module.scss';
 
-import {
-  selectGoodsFromCart,
-  selectGoodsTotalCount,
-} from 'components/cart/cart_list/cart-list-selectors';
+import { useAppSelector } from 'common/hooks/hooks';
 import { GoodsItem } from 'components/cart/cart_list/goods_item/GoodsItem';
 
 export const CartList: FC = () => {
-  const goodsInCart = useSelector(selectGoodsFromCart);
-  const goodsTotalCount = useSelector(selectGoodsTotalCount);
+  const goodsInCart = useAppSelector(state => state.cart.goodsInCart);
+  const goodsAmount = useAppSelector(state => state.cart.goodsAmount);
 
   return (
     <div className={style.cartListContent}>
       <div className={style.cartList}>
         <div className={style.cartListHeaderWrapper}>
-          <h1 className={style.cartListHeader} data-count={goodsTotalCount}>
+          <h1 className={style.cartListHeader} data-count={goodsAmount}>
             Cart
           </h1>
         </div>

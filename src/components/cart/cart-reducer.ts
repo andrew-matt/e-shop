@@ -9,8 +9,6 @@ export const slice = createSlice({
     goodsInCart: [] as GoodsItemType[],
     goodsAmount: 0,
     goodsCost: 0,
-    goodsCostWithoutDiscount: 0,
-    discount: 0,
   },
   reducers: {
     addGoodsItem(state, action: PayloadAction<{ goodsItem: GoodsItemType }>) {
@@ -50,24 +48,11 @@ export const slice = createSlice({
       state.goodsCost = priceCountHandler(
         state.goodsInCart.reduce((acc, cur) => acc + cur.price * cur.amount, 0),
       );
-      state.goodsCostWithoutDiscount = priceCountHandler(
-        state.goodsInCart.reduce((acc, cur) => acc + cur.price * cur.amount, 0),
-      );
-      state.discount = priceCountHandler(
-        priceCountHandler(
-          state.goodsInCart.reduce((acc, cur) => acc + cur.price * cur.amount, 0),
-        ) -
-          priceCountHandler(
-            state.goodsInCart.reduce((acc, cur) => acc + cur.price * cur.amount, 0),
-          ),
-      );
     },
     emptyCart(state) {
       state.goodsInCart = [];
       state.goodsAmount = 0;
       state.goodsCost = 0;
-      state.goodsCostWithoutDiscount = 0;
-      state.discount = 0;
     },
   },
 });

@@ -1,24 +1,20 @@
 import { FC, useEffect } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import style from './UserOrders.module.scss';
 
+import { useAppSelector } from 'common/hooks/hooks';
 import { GoodsItem } from 'components/cart/cart_list/goods_item/GoodsItem';
 import { fetchOrders } from 'components/user_orders/user-orders-sagas';
-import {
-  selectIsLoggedIn,
-  selectOrders,
-  selectUserId,
-} from 'components/user_orders/user-orders-selectors';
 
 export const UserOrders: FC = () => {
   const dispatch = useDispatch();
 
-  const userId = useSelector(selectUserId);
-  const orders = useSelector(selectOrders);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const userId = useAppSelector(state => state.auth.userId);
+  const orders = useAppSelector(state => state.userOrders.orders);
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
   const navigate = useNavigate();
 

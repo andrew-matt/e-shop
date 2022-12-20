@@ -2,7 +2,7 @@
 const fractionDigits = 2;
 
 // functions
-export const priceFormatter = (price: number): string => {
+export const changePriceFormat = (price: number): string => {
   return new Intl.NumberFormat('en-US', { minimumFractionDigits: fractionDigits }).format(
     price,
   );

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { showSnackBar } from 'common/components/mui/snack_bar/snackBar-reducer';
 import { PreloaderCircular } from 'common/components/preloaders/preloader_circular/PreloaderCircular';
 import { useAppSelector } from 'common/hooks/hooks';
-import { priceFormatter } from 'common/utils/utils';
+import { changePriceFormat } from 'common/utils/utils';
 import { addGoodsItem, updateCart } from 'components/cart/cart-reducer';
 import { GoodsItemType } from 'components/main/goods/goods-reducer';
 import style from 'components/main/goods/goods_card/GoodsCard.module.scss';
@@ -59,7 +59,7 @@ export const GoodsCard: FC<GoodsCard1PropsType> = ({ goodsItem }) => {
         <div className={style.content}>
           <div className={style.description}>{description}</div>
           <div className={style.wrapper}>
-            <div className={style.price}>${priceFormatter(price)}</div>
+            <div className={style.price}>${changePriceFormat(price)}</div>
             <Button
               variant="contained"
               onClick={onAddToCartButtonClickHandler}

@@ -1,19 +1,12 @@
 import { FC } from 'react';
 
-import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import style from './CartOrder.module.scss';
 
 import { Button } from 'common/components/button/Button';
-import { priceFormatter } from 'common/utils/utils';
-import {
-  selectDiscount,
-  selectGoodsTotalCost,
-  selectGoodsTotalCostWithoutDiscount,
-  selectGoodsTotalCount,
-  selectIsLoggedIn,
-} from 'components/cart/cart_order/cart-order-selectors';
+import { useAppSelector } from 'common/hooks/hooks';
+import { changePriceFormat } from 'common/utils/utils';
 
 type CartOrderPropsType = {
   buttonTitle: string;
@@ -26,11 +19,9 @@ export const CartOrder: FC<CartOrderPropsType> = ({
   onButtonClick,
   form,
 }) => {
-  const goodsTotalCost = useSelector(selectGoodsTotalCost);
-  const goodsTotalCount = useSelector(selectGoodsTotalCount);
-  const goodsTotalCostWithoutDiscount = useSelector(selectGoodsTotalCostWithoutDiscount);
-  const discount = useSelector(selectDiscount);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const goodsCost = useAppSelector(state => state.cart.goodsCost);
+  const goodsAmount = useAppSelector(state => state.cart.goodsAmount);
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn);
 
   return (
     <div className={style.cartFormSidebar}>
@@ -39,15 +30,10 @@ export const CartOrder: FC<CartOrderPropsType> = ({
           <div className={style.cartOrderTop}>
             <p className={style.totalLine}>
               <span>Order total</span>
-              <span>{priceFormatter(goodsTotalCost)} р.</span>
+              <span>${changePriceFormat(goodsCost)}</span>
             </p>
             <div className={style.countLine}>
-              <span>Goods, {goodsTotalCount} items</span>
-              <span>{priceFormatter(goodsTotalCostWithoutDiscount)} р.</span>
-            </div>
-            <div className={style.discountLine}>
-              <span>Discount</span>
-              <span>&ndash; {priceFormatter(discount)} р.</span>
+              <span>Goods, {goodsAmount} items</span>
             </div>
           </div>
           {isLoggedIn ? (

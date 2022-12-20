@@ -2,7 +2,7 @@ import { FC } from 'react';
 
 import style from './GoodsItem.module.scss';
 
-import { priceFormatter } from 'common/utils/utils';
+import { changePriceFormat } from 'common/utils/utils';
 import { GoodsCountControl } from 'components/cart/cart_list/goods_item/goods_count_control/GoodsCountControl';
 import { GoodsItemType } from 'components/main/goods/goods-reducer';
 
@@ -26,8 +26,9 @@ export const GoodsItem: FC<GoodsItemPropsType> = ({ goodsItem }) => {
       </div>
       <GoodsCountControl goodsItemId={id} amount={amount} />
       <div className={style.goodsItemPrice}>
-        <div className={style.goodsItemPriceNew}>{priceFormatter(price * amount)} р.</div>
-        <div className={style.goodsItemPriceOld}>{priceFormatter(price * amount)} р.</div>
+        <div className={style.goodsItemPriceNew}>
+          ${changePriceFormat(price * amount)}
+        </div>
       </div>
     </div>
   );

@@ -47,10 +47,6 @@
           display: flex;
           justify-content: space-between;
         }
-
-        .discountLine {
-          @extend .countLine;
-        }
       }
 
       .cartOrderButton {
