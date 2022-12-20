@@ -1,15 +1,12 @@
 import { FC, forwardRef, SyntheticEvent } from 'react';
 
+import { Grow, Slide } from '@mui/material';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 import Snackbar from '@mui/material/Snackbar';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { hideSnackBar } from 'common/components/mui/snack_bar/snackBar-reducer';
-import {
-  selectOpen,
-  selectSeverity,
-  selectTitle,
-} from 'common/components/mui/snack_bar/snackBar-selectors';
+import { useAppSelector } from 'common/hooks/hooks';
 
 const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -18,9 +15,12 @@ const Alert = forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) 
 export const SnackBar: FC = () => {
   const dispatch = useDispatch();
 
-  const open = useSelector(selectOpen);
-  const title = useSelector(selectTitle);
-  const severity = useSelector(selectSeverity);
+  const open = useAppSelector(state => state.snackBar.open);
+  const title = useAppSelector(state => state.snackBar.title);
+  const severity = useAppSelector(state => state.snackBar.severity);
+  const transition = useAppSelector(state => state.snackBar.transition);
+  const anchorOrigin = useAppSelector(state => state.snackBar.anchorOrigin);
+  const classNames = useAppSelector(state => state.snackBar.classNames);
 
   const titleLength = 45;
   const minAutoHideDuration = 3000;
@@ -37,9 +37,23 @@ export const SnackBar: FC = () => {
     dispatch(hideSnackBar());
   };
 
+  const snackBarTransition = transition === 'slide' ? Slide : Grow;
+
   return (
-    <Snackbar open={open} autoHideDuration={autoHideDuration} onClose={handleClose}>
-      <Alert onClose={handleClose} severity={severity} sx={{ width: '100%' }}>
+    <Snackbar
+      open={open}
+      autoHideDuration={autoHideDuration}
+      onClose={handleClose}
+      TransitionComponent={snackBarTransition}
+      anchorOrigin={anchorOrigin}
+      className={classNames.snackBar}
+    >
+      <Alert
+        onClose={handleClose}
+        severity={severity}
+        sx={{ width: '100%' }}
+        className={classNames.alert}
+      >
         {title}
       </Alert>
     </Snackbar>

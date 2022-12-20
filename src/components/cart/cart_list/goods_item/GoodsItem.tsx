@@ -11,7 +11,7 @@ type GoodsItemPropsType = {
 };
 
 export const GoodsItem: FC<GoodsItemPropsType> = ({ goodsItem }) => {
-  const { id, image, priceNow, priceLast, brand, description, amount } = goodsItem;
+  const { id, image, price, brand, description, amount } = goodsItem;
 
   return (
     <div className={style.cartListItemWrapper}>
@@ -26,12 +26,8 @@ export const GoodsItem: FC<GoodsItemPropsType> = ({ goodsItem }) => {
       </div>
       <GoodsCountControl goodsItemId={id} amount={amount} />
       <div className={style.goodsItemPrice}>
-        <div className={style.goodsItemPriceNew}>
-          {priceFormatter(priceNow * amount)} р.
-        </div>
-        <div className={style.goodsItemPriceOld}>
-          {priceFormatter(priceLast * amount)} р.
-        </div>
+        <div className={style.goodsItemPriceNew}>{priceFormatter(price * amount)} р.</div>
+        <div className={style.goodsItemPriceOld}>{priceFormatter(price * amount)} р.</div>
       </div>
     </div>
   );

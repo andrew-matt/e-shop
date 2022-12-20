@@ -13,7 +13,7 @@ export const LogoButton: FC = () => {
   };
 
   return (
-    <Button onClick={onLogoClickHandler}>
+    <Button color="success" onClick={onLogoClickHandler}>
       <div className={style.logo}>E-shop</div>
     </Button>
   );

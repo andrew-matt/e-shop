@@ -22,7 +22,7 @@ export const CartButton: FC = () => {
       aria-controls="menu-appbar"
       aria-haspopup="true"
       onClick={onCartButtonClickHandler}
-      color="inherit"
+      color="success"
     >
       <CustomBadge badgeContent={goodsAmount}>
         <img src={cartIcon} alt="cart-icon" className={style.icon} />

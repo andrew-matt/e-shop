@@ -9,7 +9,7 @@ type CustomBadgeType = {
 
 export const CustomBadge: FC<CustomBadgeType> = ({ children, badgeContent }) => {
   return (
-    <Badge badgeContent={badgeContent} color="primary">
+    <Badge badgeContent={badgeContent} color="success">
       {children}
     </Badge>
   );

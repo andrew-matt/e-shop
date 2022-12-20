@@ -21,7 +21,7 @@ export const ProfileButton: FC = () => {
         aria-controls="menu-appbar"
         aria-haspopup="true"
         onClick={handleMenu}
-        color="inherit"
+        color="success"
       >
         <img src={userIcon} alt="user-icon" className={style.icon} />
       </IconButton>

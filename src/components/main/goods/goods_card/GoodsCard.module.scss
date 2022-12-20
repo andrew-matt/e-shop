@@ -1,159 +1,95 @@
-@import 'src/common/styles/sass/variables';
+.goodsCardWrapper {
+  width: 25%;
+  padding: 16px;
 
-.goodsCard {
-  cursor: pointer;
-  width: calc(100%/12*6 - 8px);
-  margin: 0 4px 24px;
+  .goodsCard {
+    border: 1px solid #d1d1d1;
+    padding: 16px;
+    border-radius: 12px;
+    height: 100%;
 
-  @media (min-width: 768px) {
-    width: calc(100%/12*3 - 8px);
-  }
-
-  @media (min-width: 954px) {
-    width: calc(100%/12*2.4 - 8px);
-  }
-
-  @media (min-width: 1140px) {
-    width: calc(100%/12*2 - 32px);
-    margin: 0 16px 32px;
-  }
-
-  @media (min-width: 1326px) {
-    width: calc(100%/12*1.714 - 32px);
-  }
-
-  .imageWrapper {
-    padding-top: calc(100% * (240/180));
-    height: 0;
-    position: relative;
-    margin: 0 0 4px;
-    background: #f6f6f6;
-    overflow: hidden;
-    border-radius: 8px;
-
-    &:hover {
-
-      .addToCartButton {
-        opacity: 1;
-      }
-    }
-
-    &:before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(41,43,83,.03);
-      display: block;
-      z-index: 2;
-    }
-
-    .image {
-      max-width: 100%;
-      width: 100%;
-      height: auto;
-      position: absolute;
-      z-index: 1;
-      left: 0;
-      top: 50%;
-      transform: translate(0,-50%);
-    }
-
-    .imageLoading {
-      display: none;
-    }
-
-    .preloaderCircular {
-      top: calc(50% - 1.5em);
-      left: calc(50% - 1.5em);
-      width: 3em;
-      height: 3em;
-      border: 0.5em solid rgba(25, 118, 210, 0.2);
-      border-left: 0.5em solid $mainColor;
-    }
-
-    .addToCartButton {
-      font-size: 12px;
-      line-height: 16px;
-      transition: all .3s ease 0s;
-      border-radius: 50px;
-      background-color: rgba(255,255,255,.9);
-      cursor: pointer;
-      padding: 10px 30px;
-      border: none;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
-      white-space: nowrap;
-      box-shadow: 0 0 20px rgba(0,0,0,.1);
-      z-index: 3;
-      opacity: 0;
-      user-select: none;
-    }
-
-    .addToCartButton:hover {
-      background-color: #fff;
-    }
-  }
-
-  .goodsCardPrice {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-
-    .priceNow {
-      text-overflow: ellipsis;
+    .imageWrapper {
+      aspect-ratio: 1 / 1;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
       overflow: hidden;
-      white-space: nowrap;
-      font-size: 14px;
-      line-height: 20px;
-      font-weight: 700;
-      color: #242424;
-      text-decoration: none;
-      max-width: 100%;
-      margin-right: 4px;
-
-      @media (min-width: 1024px) {
-        font-size: 18px;
-        line-height: 24px;
-        margin-right: 10px;
-      }
-    }
-
-    .priceLast {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
-      font-size: 12px;
-      line-height: 16px;
-      color: #999;
-      text-decoration: line-through;
-      max-width: 100%;
-
-      @media (min-width: 1024px) {
-        font-size: 14px;
-        line-height: 20px;
-      }
-    }
-  }
-
-  .goodsCardDescription {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    font-size: 14px;
-    line-height: 20px;
-    color: #999;
-    position: relative;
-
-    .goodsCardBrand {
+      padding: 5px;
 
       &:after {
-        content: ' / ';
+        content: "";
+        background-color: rgba(0, 0, 0, 0.05);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .image {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        vertical-align: middle;
+        display: inline-block;
+        flex-shrink: 0;
+      }
+    }
+
+    .content {
+      margin-top: 16px;
+
+      .description {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        color: #777676;
+        margin-bottom: 10px;
+      }
+
+      .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .price {
+          font-family: 'Poppins', sans-serif;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 27px;
+          color: #151515;
+        }
+
+        .button {
+          border-radius: 12px;
+          padding: 8px 12px;
+
+          .buttonTitle {
+            text-transform: none;
+            font-family: 'Poppins', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 15px;
+            line-height: 22px;
+            color: white;
+          }
+        }
       }
     }
   }
 }
+
+.snackBar {
+  top: 100px;
+
+  .alert {
+    background-color: rgba(36, 36, 36, .94);
+    border-radius: 8px;
+  }
+}
+

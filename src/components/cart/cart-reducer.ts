@@ -24,7 +24,7 @@ export const slice = createSlice({
         state.goodsInCart.unshift(action.payload.goodsItem);
       }
     },
-    removeGoodsItem(state, action: PayloadAction<{ goodsItemId: number }>) {
+    removeGoodsItem(state, action: PayloadAction<{ goodsItemId: string }>) {
       const index = state.goodsInCart.findIndex(
         goodsItem => goodsItem.id === action.payload.goodsItemId,
       );
@@ -35,7 +35,7 @@ export const slice = createSlice({
     },
     changeGoodsItemAmount(
       state,
-      action: PayloadAction<{ goodsItemId: number; amount: number }>,
+      action: PayloadAction<{ goodsItemId: string; amount: number }>,
     ) {
       const goodsItem = state.goodsInCart.find(
         goodsItem => goodsItem.id === action.payload.goodsItemId,
@@ -48,17 +48,17 @@ export const slice = createSlice({
     updateCart(state) {
       state.goodsAmount = state.goodsInCart.reduce((acc, cur) => acc + cur.amount, 0);
       state.goodsCost = priceCountHandler(
-        state.goodsInCart.reduce((acc, cur) => acc + cur.priceNow * cur.amount, 0),
+        state.goodsInCart.reduce((acc, cur) => acc + cur.price * cur.amount, 0),
       );
       state.goodsCostWithoutDiscount = priceCountHandler(
-        state.goodsInCart.reduce((acc, cur) => acc + cur.priceLast * cur.amount, 0),
+        state.goodsInCart.reduce((acc, cur) => acc + cur.price * cur.amount, 0),
       );
       state.discount = priceCountHandler(
         priceCountHandler(
-          state.goodsInCart.reduce((acc, cur) => acc + cur.priceLast * cur.amount, 0),
+          state.goodsInCart.reduce((acc, cur) => acc + cur.price * cur.amount, 0),
         ) -
           priceCountHandler(
-            state.goodsInCart.reduce((acc, cur) => acc + cur.priceNow * cur.amount, 0),
+            state.goodsInCart.reduce((acc, cur) => acc + cur.price * cur.amount, 0),
           ),
       );
     },

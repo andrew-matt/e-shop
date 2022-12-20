@@ -1,41 +1,34 @@
 import { FC, useEffect } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import style from './Goods.module.scss';
+import { useDispatch } from 'react-redux';
 
 import { PreloaderCircular } from 'common/components/preloaders/preloader_circular/PreloaderCircular';
+import { useAppSelector } from 'common/hooks/hooks';
+import { GoodsItemType } from 'components/main/goods/goods-reducer';
 import { fetchGoods } from 'components/main/goods/goods-sagas';
-import {
-  selectGoodsFromStore,
-  selectIsLoading,
-} from 'components/main/goods/goods-selectors';
+import style from 'components/main/goods/Goods.module.scss';
 import { GoodsCard } from 'components/main/goods/goods_card/GoodsCard';
 
 export const Goods: FC = () => {
   const dispatch = useDispatch();
-  const goodsInStore = useSelector(selectGoodsFromStore);
-  const isLoading = useSelector(selectIsLoading);
+
+  const isLoading = useAppSelector(state => state.app.isLoading);
+  const goodsInStore = useAppSelector(state => state.goods.goodsInStore);
 
   useEffect(() => {
     dispatch(fetchGoods());
   }, [dispatch]);
 
+  if (isLoading) {
+    return <PreloaderCircular />;
+  }
+
   return (
-    <div>
-      {isLoading ? (
-        <PreloaderCircular />
-      ) : (
-        <>
-          <h2 className={style.goodsHeader}>Top sales</h2>
-          <div className={style.goodsWrapper}>
-            {goodsInStore.length !== 0 &&
-              goodsInStore.map((goodsItem: any) => {
-                return <GoodsCard key={goodsItem.id} goodsItem={goodsItem} />;
-              })}
-          </div>
-        </>
-      )}
+    <div className={style.goods}>
+      {goodsInStore.length !== 0 &&
+        goodsInStore.map((goodsItem: GoodsItemType) => {
+          return <GoodsCard key={goodsItem.id} goodsItem={goodsItem} />;
+        })}
     </div>
   );
 };

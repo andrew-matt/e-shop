@@ -1,15 +1,24 @@
 import { doc, getDoc } from 'firebase/firestore';
 
-import { GoodsItemType } from 'components/main/goods/goods-reducer';
 import { db } from 'firebase-config';
 
+// apis
 export const goodsApi = {
-  async getGoods(): Promise<GoodsItemType[] | undefined> {
-    const docRef = doc(db, 'e-shop', 'goods');
+  async getGoods(): Promise<ResponseGoodsItemType[] | undefined> {
+    const docRef = doc(db, 'goods', 'televisions');
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      return docSnap.data().goods;
+      return docSnap.data().data;
     }
   },
+};
+
+// types
+export type ResponseGoodsItemType = {
+  brand: string;
+  description: string;
+  id: string;
+  image: string;
+  price: number;
 };

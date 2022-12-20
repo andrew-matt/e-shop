@@ -10,7 +10,7 @@ import { Button } from 'common/components/button/Button';
 import { changeGoodsItemAmount, removeGoodsItem } from 'components/cart/cart-reducer';
 
 type GoodsCountControlPropsType = {
-  goodsItemId: number;
+  goodsItemId: string;
   amount: number;
 };
 
