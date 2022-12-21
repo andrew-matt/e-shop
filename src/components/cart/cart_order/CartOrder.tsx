@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
+import CountUp from 'react-countup';
 import { NavLink } from 'react-router-dom';
 
 import style from './CartOrder.module.scss';
 
 import { Button } from 'common/components/button/Button';
 import { useAppSelector } from 'common/hooks/hooks';
-import { changePriceFormat } from 'common/utils/utils';
 
 type CartOrderPropsType = {
   buttonTitle: string;
@@ -30,7 +30,14 @@ export const CartOrder: FC<CartOrderPropsType> = ({
           <div className={style.cartOrderTop}>
             <p className={style.totalLine}>
               <span>Order total</span>
-              <span>${changePriceFormat(goodsCost)}</span>
+              <CountUp
+                prefix="$"
+                start={0}
+                end={goodsCost}
+                preserveValue
+                duration={0.3}
+                decimals={2}
+              />
             </p>
             <div className={style.countLine}>
               <span>Goods, {goodsAmount} items</span>

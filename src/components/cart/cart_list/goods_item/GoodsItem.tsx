@@ -1,8 +1,9 @@
 import { FC } from 'react';
 
+import CountUp from 'react-countup';
+
 import style from './GoodsItem.module.scss';
 
-import { changePriceFormat } from 'common/utils/utils';
 import { GoodsCountControl } from 'components/cart/cart_list/goods_item/goods_count_control/GoodsCountControl';
 import { GoodsItemType } from 'components/main/goods/goods-reducer';
 
@@ -27,7 +28,14 @@ export const GoodsItem: FC<GoodsItemPropsType> = ({ goodsItem }) => {
       <GoodsCountControl goodsItemId={id} amount={amount} />
       <div className={style.goodsItemPrice}>
         <div className={style.goodsItemPriceNew}>
-          ${changePriceFormat(price * amount)}
+          <CountUp
+            prefix="$"
+            start={0}
+            end={price * amount}
+            preserveValue
+            duration={0.3}
+            decimals={2}
+          />
         </div>
       </div>
     </div>
