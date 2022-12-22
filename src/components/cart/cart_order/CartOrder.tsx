@@ -8,6 +8,8 @@ import style from './CartOrder.module.scss';
 import { Button } from 'common/components/button/Button';
 import { useAppSelector } from 'common/hooks/hooks';
 
+const pluralize = require('pluralize');
+
 type CartOrderPropsType = {
   buttonTitle: string;
   onButtonClick?: () => void;
@@ -29,7 +31,7 @@ export const CartOrder: FC<CartOrderPropsType> = ({
         <div className={style.cartOrder}>
           <div className={style.cartOrderTop}>
             <p className={style.totalLine}>
-              <span>Order total</span>
+              <span className={style.totalLineText}>Order total</span>
               <CountUp
                 prefix="$"
                 start={0}
@@ -40,7 +42,9 @@ export const CartOrder: FC<CartOrderPropsType> = ({
               />
             </p>
             <div className={style.countLine}>
-              <span>Goods, {goodsAmount} items</span>
+              <span>
+                Goods, {goodsAmount} {pluralize('item', goodsAmount)}
+              </span>
             </div>
           </div>
           {isLoggedIn ? (

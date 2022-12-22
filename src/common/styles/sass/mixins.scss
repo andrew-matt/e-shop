@@ -28,8 +28,8 @@
   font-family: BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
   &:hover {
-    background-color: #1163b4;
-    border: 2px solid #1163b4;
+    background-color: $mainColorHovered;
+    border: 2px solid $mainColorHovered;
   }
 }
 
